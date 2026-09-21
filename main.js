@@ -1,11 +1,3 @@
-document.addEventListener('DOMContentLoaded',function(){
-  document.addEventListener('click',function(e){
-    var c=e.target.closest('.cart');
-    if(c){var l=c.textContent;c.textContent='Added';setTimeout(function(){c.textContent=l},1600);}
-  });
-  var f=document.getElementById('su');
-  if(f)f.addEventListener('submit',function(e){
-    e.preventDefault();var b=f.querySelector('button');b.textContent='Welcome';f.reset();
-    setTimeout(function(){b.textContent='Join'},2400);
-  });
-});
+// Shopify checkout and email-list integrations will be added when those
+// services are ready. The pre-launch site intentionally contains no fake cart
+// or signup behavior.

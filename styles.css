@@ -74,6 +74,7 @@
   /* product bridge (block two) */
   .bridge-head{max-width:70ch}
   .roastlite{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:38px}
+  .roastlite:has(.rl:only-child){grid-template-columns:minmax(0,720px)}
   .rl{padding:26px 24px;background:var(--raised);border:1px solid var(--line);display:flex;flex-direction:column}
   .rl .rl-name{font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:1.35rem;color:#fff;line-height:1;margin-bottom:12px}
   .rl .str{margin-bottom:12px}
@@ -92,6 +93,7 @@
 
   /* cards */
   .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:44px}
+  .cards:has(.card:only-child){grid-template-columns:minmax(0,520px);justify-content:center}
   .card{background:#fff;border-radius:3px;display:flex;flex-direction:column;overflow:hidden}
   .ctop{background:var(--ink);padding:24px;display:flex;align-items:center;justify-content:center}
   .ctop img{width:100%;max-width:220px}
@@ -104,6 +106,8 @@
   .str span{font-family:var(--display);text-transform:uppercase;letter-spacing:.09em;font-size:.72rem}
   .prow{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:auto;padding-top:15px;border-top:1px solid #E6E1D6}
   .price{font-family:var(--display);font-weight:700;font-size:1.22rem;color:var(--pink);font-variant-numeric:tabular-nums}
+  .launch-state{font-family:var(--display);font-weight:600;text-transform:uppercase;letter-spacing:.08em;font-size:.76rem;color:var(--blue);text-align:right}
+  .subscription-price{margin:18px 0 0!important;padding-top:16px;border-top:1px solid #E6E1D6}
 
   /* founder strip */
   .strip{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:42px}
@@ -144,6 +148,7 @@
   .signup form{display:flex;gap:11px;max-width:440px;margin:24px auto 0}
   .signup input{flex:1;padding:14px 16px;border:1px solid rgba(255,255,255,.28);border-radius:2px;background:rgba(255,255,255,.06);color:#fff;font-family:var(--body);font-size:1rem}
   .signup input::placeholder{color:rgba(255,255,255,.55)}
+  .signup-action{justify-content:center;margin-top:24px}
 
   footer.foot{background:#060708;border-top:1px solid var(--line);padding:52px 0 26px}
   .fgrid{display:grid;grid-template-columns:1.5fr repeat(3,1fr);gap:34px;padding-bottom:32px;border-bottom:1px solid var(--line)}
