@@ -27,7 +27,7 @@
   .sm{padding:9px 17px;font-size:.74rem}
   .row{display:flex;flex-wrap:wrap;gap:14px}
 
-  header.bar{position:sticky;top:0;z-index:60;background:rgba(10,11,13,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  header.bar{position:relative;z-index:60;background:rgba(10,11,13,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
   .barin{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:12px 26px;max-width:var(--wrap);margin:0 auto}
   .brand{display:flex;align-items:center;gap:11px}
   .brand img{width:64px}
