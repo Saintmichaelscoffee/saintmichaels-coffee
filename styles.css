@@ -136,6 +136,26 @@
   details{border-bottom:1px solid #DFD9CC;padding:17px 0}
   details summary{font-family:var(--display);font-weight:600;text-transform:uppercase;font-size:1.02rem;color:var(--pink);cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:16px}
   details summary::-webkit-details-marker{display:none}
+
+
+/* Keep Klaviyo lead form isolated from the site's global heading and field styles */
+.klaviyo-form-VhQmSh form.klaviyo-form h1{
+  color:#111 !important;
+  font-size:38px !important;
+  line-height:1.1 !important;
+  margin:0 !important;
+}
+.klaviyo-form-VhQmSh form.klaviyo-form p{
+  max-width:none;
+  margin:0;
+}
+.klaviyo-form-VhQmSh form.klaviyo-form input[type="email"],
+.klaviyo-form-VhQmSh form.klaviyo-form input[type="tel"]{
+  min-height:52px !important;
+}
+@media(max-width:600px){
+  .klaviyo-form-VhQmSh form.klaviyo-form h1{font-size:30px !important}
+}
   details summary::after{content:"+";color:var(--blue);font-size:1.4rem;line-height:1}
   details[open] summary::after{content:"\2013"}
   details p{margin:12px 0 0;font-size:.97rem}
