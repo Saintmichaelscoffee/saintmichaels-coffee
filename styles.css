@@ -71,6 +71,9 @@
   .emblemfig{align-self:center!important;justify-content:center}
   .emblemfig img{width:100%}
   .emblemfig img{max-height:none!important;object-fit:contain!important;width:100%;border-radius:3px}
+  .story-figure img{aspect-ratio:3/2;object-fit:cover;object-position:center}
+  .story-figure figcaption{font-family:var(--body);text-transform:none;letter-spacing:0;font-size:.9rem;line-height:1.45;color:var(--dim)}
+  .story-figure figcaption strong{display:block;font-family:var(--display);font-size:1.08rem;text-transform:uppercase;letter-spacing:.08em;color:#fff;margin-bottom:2px}
   /* product bridge (block two) */
   .bridge-head{max-width:70ch}
   .roastlite{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:38px}
@@ -163,12 +166,37 @@
   .note{background:rgba(0,71,196,.07);border-left:3px solid var(--blue);padding:17px 21px;font-size:.95rem;margin-top:38px;color:var(--pdim)}
   .note strong{color:var(--pink)}
 
-  .signup{background:linear-gradient(150deg,#002A76,#00133A);border-radius:4px;padding:52px 40px;text-align:center}
+  .signup{background:linear-gradient(150deg,#002A76,#00133A);border-radius:4px;padding:38px 40px;text-align:center;max-width:900px;margin:0 auto}
   .signup p{margin:0 auto}
   .signup form{display:flex;gap:11px;max-width:440px;margin:24px auto 0}
   .signup input{flex:1;padding:14px 16px;border:1px solid rgba(255,255,255,.28);border-radius:2px;background:rgba(255,255,255,.06);color:#fff;font-family:var(--body);font-size:1rem}
   .signup input::placeholder{color:rgba(255,255,255,.55)}
   .signup-action{justify-content:center;margin-top:24px}
+
+  /* Foundation page */
+  .foundation-hero{position:relative;min-height:min(70vh,690px);display:flex;align-items:flex-end;overflow:hidden}
+  .foundation-hero-media,.foundation-hero-scrim{position:absolute;inset:0}
+  .foundation-hero-media img{width:100%;height:100%;object-fit:cover;object-position:center 44%}
+  .foundation-hero-scrim{background:linear-gradient(180deg,rgba(6,7,8,.08) 18%,rgba(6,7,8,.34) 55%,rgba(6,7,8,.96) 100%),linear-gradient(90deg,rgba(6,7,8,.64),rgba(6,7,8,0) 66%)}
+  .foundation-hero-copy{position:relative;width:100%;padding-top:180px;padding-bottom:58px}
+  .foundation-hero-copy h1{max-width:13ch}
+  .foundation-hero-copy p{font-size:1.15rem;color:#e4e7eb;max-width:48ch}
+  .foundation-caption{background:var(--blue);color:#fff;padding:24px 0}
+  .foundation-caption p{max-width:900px;margin:0;font-size:1rem}
+  .foundation-caption strong{font-family:var(--display);text-transform:uppercase;letter-spacing:.07em;font-size:1.1rem;margin-right:.3em}
+  .mission-callout{border-left:3px solid var(--blue);background:rgba(0,71,196,.1);padding:34px}
+  .mission-callout p{font-family:var(--display);font-size:clamp(1.45rem,2.8vw,2.15rem);line-height:1.2;text-transform:uppercase;color:#fff;margin:0;max-width:20ch}
+  .callout-kicker{display:block;font-family:var(--display);text-transform:uppercase;letter-spacing:.18em;font-size:.72rem;color:var(--lit);margin-bottom:12px}
+  .response-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:40px}
+  .response-steps article{background:var(--raised);border:1px solid var(--line);padding:30px 26px}
+  .response-steps article>span{font-family:var(--display);font-size:2.2rem;font-weight:700;color:var(--blue)}
+  .response-steps h3{margin-top:14px}
+  .response-steps p{color:var(--dim);font-size:.95rem;margin:0}
+  .assistance-list{list-style:none;margin:0;padding:0;border-top:1px solid #d8d2c6}
+  .assistance-list li{position:relative;padding:16px 16px 16px 34px;border-bottom:1px solid #d8d2c6;font-family:var(--display);font-size:1.08rem;text-transform:uppercase;color:var(--pink)}
+  .assistance-list li::before{content:"";position:absolute;left:4px;top:24px;width:14px;height:3px;background:var(--blue)}
+  .foundation-verse blockquote{font-family:var(--display);text-transform:uppercase;font-size:clamp(2rem,4.5vw,3.6rem);max-width:22ch}
+  .foundation-contact{max-width:760px}
 
   footer.foot{background:#060708;border-top:1px solid var(--line);padding:52px 0 26px}
   .fgrid{display:grid;grid-template-columns:1.5fr repeat(3,1fr);gap:34px;padding-bottom:32px;border-bottom:1px solid var(--line)}
@@ -190,6 +218,9 @@
     .barin{flex-wrap:wrap;gap:10px}
     nav.v{order:3;width:100%;justify-content:space-between}
     .strip img{height:240px}
+    .response-steps{grid-template-columns:1fr}
+    .foundation-hero{min-height:620px}
+    .foundation-hero-media img{object-position:56% center}
   }
   @media(max-width:560px){
     .cards,.forlist{grid-template-columns:1fr}
