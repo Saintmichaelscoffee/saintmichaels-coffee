@@ -13,6 +13,9 @@
   const chapters = [...document.querySelectorAll('.journey-chapter')];
   const layers = [...document.querySelectorAll('.journey-layer')];
   let active = -1;
+  const stepLinks = [...document.querySelectorAll('[data-step-link]')];
+  const nextCue = document.querySelector('.journey-next');
+  const stepNames = ['Military', 'Police', 'First Responders', 'Families'];
   function paint() {
     frame = 0;
     if (!root.classList.contains('motion-on') || !desktop.matches || document.hidden) return;
@@ -29,6 +32,11 @@
       });
       if (active !== closest) {
         active = closest;
+        stepLinks.forEach((link, i) => {
+          if (i === active) link.setAttribute('aria-current', 'step');
+          else link.removeAttribute('aria-current');
+        });
+        if (nextCue) nextCue.textContent = active < 3 ? `0${active + 1} / 04 · Next: ${stepNames[active + 1]} ↓` : '04 / 04 · Everyone belongs here';
         layers.forEach((layer, i) => layer.classList.toggle('is-active', i === active));
         chapters.forEach((chapter, i) => chapter.classList.toggle('is-current', i === active));
       }
@@ -46,7 +54,7 @@
       button.setAttribute('aria-pressed', String(paused));
     }
     if (enabled && 'IntersectionObserver' in window) {
-      targets = [...document.querySelectorAll('.collection-intro, .product-preview, .service-grid figure, .split > div, .split > figure, .timeline > *, .post-card, .journey-intro, .journey-chapter, .journey-close, .verse .wrap')];
+      targets = [...document.querySelectorAll('.collection-intro, .product-preview, .service-grid figure, .split > div, .split > figure, .timeline > *, .post-card, .journey-close, .verse .wrap')];
       observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
           if (entry.isIntersecting) { entry.target.classList.add('is-revealed'); observer.unobserve(entry.target); }
@@ -76,4 +84,27 @@
   reduce.addEventListener('change', configure);
   desktop.addEventListener('change', configure);
   configure();
+  // Once per session; animate the actual verse into its final, accessible position.
+  const verse = document.querySelector('.hero-scripture');
+  let seen = false;
+  try { seen = sessionStorage.getItem('sm-verse-seen') === 'true'; } catch (_) {}
+  if (verse && !seen && !reduce.matches && !paused && verse.animate) {
+    const begin = () => {
+      if (reduce.matches || paused) return;
+      const box = verse.getBoundingClientRect();
+      const heroBox = hero.getBoundingClientRect();
+      const scale = desktop.matches ? 1.65 : 1;
+      const dx = desktop.matches ? Math.max(0, innerWidth / 2 - box.left - box.width / 2) : 0;
+      const dy = desktop.matches ? heroBox.top + Math.min(heroBox.height, innerHeight - heroBox.top) * .48 - box.top : 0;
+      const anim = verse.animate([
+        { opacity: 0, transform: `translate(${dx}px, ${dy}px) scale(${scale})`, offset: 0 },
+        { opacity: 1, transform: `translate(${dx}px, ${dy}px) scale(${scale})`, offset: .2 },
+        { opacity: 1, transform: 'translate(0,0) scale(1)', offset: 1 }
+      ], { duration: desktop.matches ? 2100 : 650, easing: 'cubic-bezier(.22,.61,.36,1)' });
+      reduce.addEventListener('change', () => anim.cancel(), { once: true });
+      button?.addEventListener('click', () => anim.cancel(), { once: true });
+      try { sessionStorage.setItem('sm-verse-seen', 'true'); } catch (_) {}
+    };
+    (document.fonts?.ready || Promise.resolve()).then(begin);
+  }
 })();
