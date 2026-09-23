@@ -45,6 +45,10 @@
  });
  if(hero&&'IntersectionObserver' in window)new IntersectionObserver(entries=>entries.forEach(e=>{hero.classList.toggle('hero-visible',e.isIntersecting);const fabric=hero.querySelector('.flag-fabric');if(fabric){if(e.isIntersecting&&!paused&&!reduce.matches)fabric.unpauseAnimations();else fabric.pauseAnimations()}})).observe(hero);
  addEventListener('pageshow',e=>{if(e.persisted){configure();if(hero?.getBoundingClientRect().bottom>0)entrance()}});
+ // Move the existing CTA controls without duplicating links or focus targets.
+ const heroCopy=document.querySelector('.hero-copy'),showcase=document.querySelector('.hero-showcase'),heroCtas=heroCopy?.querySelector('.row'),phoneLayout=matchMedia('(max-width:850px)');
+ function placeHeroCtas(){if(!heroCtas||!showcase||!heroCopy)return;(phoneLayout.matches?showcase:heroCopy).append(heroCtas)}
+ placeHeroCtas();phoneLayout.addEventListener('change',placeHeroCtas);
  const gallery=document.querySelector('.mission-gallery');
  if(gallery){
   const tabs=[...gallery.querySelectorAll('[role=tab]')],slides=[...gallery.querySelectorAll('.mission-slide')],counter=gallery.querySelector('.gallery-count'),stage=gallery.querySelector('.gallery-stage');let current=0;

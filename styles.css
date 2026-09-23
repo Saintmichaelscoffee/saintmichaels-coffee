@@ -543,3 +543,8 @@ html:not(.motion-on) .flag-fabric>g{filter:none}
  #view-home .hero-showcase .hero-products{order:1}
  #view-home .hero-showcase .hero-scripture{order:0;margin:0 0 24px}
 }
+
+@media(max-width:850px){
+ #view-home .hero-showcase>.row{order:2;align-self:stretch;justify-content:center;margin:28px 0 0;gap:12px}
+ #view-home .hero-showcase>.row .btn{flex:1;min-width:140px;text-align:center}
+}
