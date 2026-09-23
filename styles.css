@@ -310,3 +310,80 @@ nav.v{flex-wrap:wrap}nav.v a{white-space:nowrap}
 #view-home .service-grid img{display:block;width:100%;height:auto;aspect-ratio:auto;object-fit:contain;border:0;border-radius:0;background:transparent}
 #view-home .service-grid figcaption{border:0;padding:25px 8px 0;margin:0;background:none;line-height:1.4}
 @media(max-width:700px){#view-home .service-section{padding:56px 0 64px}#view-home .service-grid{gap:42px;margin-top:34px;padding:0 8px}#view-home .service-grid img{height:auto;aspect-ratio:auto}#view-home .service-grid figcaption{padding-top:18px}}
+/* Cinematic depth: monochrome surfaces, blue accents, progressively enhanced motion. */
+#view-home .product-section{position:relative;z-index:2;background:radial-gradient(ellipse at 50% 0%,#fff 0%,#e7e9ed 75%);padding-top:88px}
+#view-home .product-section:before{content:"";position:absolute;top:-24px;left:0;width:100%;height:25px;background:#f4f5f7;clip-path:polygon(0 100%,100% 0,100% 100%)}
+#view-home .collection-intro{position:relative;z-index:1}
+.product-preview{position:relative;isolation:isolate;transition:transform .35s ease,box-shadow .35s ease}
+#view-home .product-preview{box-shadow:0 30px 55px -25px #07111f80,inset 0 1px 0 #ffffff22}
+.product-preview>img{transition:transform .65s cubic-bezier(.2,.7,.2,1);transform-origin:50% 70%}
+.product-copy{position:relative;z-index:1}
+.btn{position:relative;transition:transform .2s ease,background-color .2s ease,box-shadow .2s ease,border-color .2s ease}
+.btn:active{transform:translateY(1px) scale(.98)}
+.btn:focus-visible,nav a:focus-visible,.motion-toggle:focus-visible{outline:3px solid #76a9ff;outline-offset:5px}
+nav.v a{transition:color .2s ease,background-color .2s ease,box-shadow .2s ease}
+nav.v a:hover{background:#ffffff0b;box-shadow:inset 0 -2px 0 #2475ff}
+#view-home .service-section{position:relative;background:radial-gradient(ellipse at 55% 45%,#142035,#080b10 68%);padding-top:104px}
+#view-home .service-grid{position:relative;z-index:1}
+#view-home .service-grid figure:nth-child(2){margin-top:58px}
+#view-home .service-grid figure:nth-child(3){margin-top:22px}
+#view-home .service-grid img{box-shadow:0 22px 42px -18px #000b}
+#view-home .foundation-feature{background:#eceef1;border-color:#cdd2da}
+#view-home .foundation-feature img{border:0;box-shadow:18px 18px 0 #0b244b,0 28px 50px #10192845}
+#view-home .foundation-feature .split{gap:72px}
+#view-home .foundation-feature .btn.ghost{color:#123967;border-color:#234c7d}
+#view-home .paper{background:#eef0f3}
+#view-home .fortile{border-color:#cbd1da!important}
+#view-home .hero-scripture blockquote{color:#f5f7fa}
+.motion-toggle{display:block;margin:28px 0 0;background:transparent;border:1px solid #46536a;color:#bac4d3;padding:9px 14px;border-radius:3px;font:inherit;font-size:.85rem;cursor:pointer}
+.motion-toggle[hidden]{display:none}
+.mission-journey{background:#080b10;position:relative;border-block:1px solid #283448;padding:96px 0 80px}
+.journey-intro{max-width:950px;margin-bottom:60px;text-align:center}
+.journey-intro h2{font-size:clamp(2.5rem,4.8vw,4rem)}
+.journey-intro p{margin:0 auto;font-size:1.35rem;color:#bdc9db}
+.journey-layout{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.journey-visual{display:none}
+.journey-chapters{grid-column:1/-1}
+.journey-chapter{position:relative;padding:38px 0 60px;max-width:680px;margin:auto}
+.chapter-number{display:block;color:#4a7ab6;font-family:var(--display);font-size:1.05rem;letter-spacing:.15em;margin-bottom:22px}
+.journey-chapter h3{font-size:clamp(2rem,3.3vw,3.1rem);margin:16px 0 22px}
+.journey-chapter p{font-size:1.2rem;line-height:1.65;color:#bbc6d7}
+.chapter-mobile{display:block;width:100%;max-height:520px;object-fit:contain;margin-top:28px}
+.journey-close{text-align:center;padding-top:30px}.journey-close p{margin:0 auto 18px}.journey-close .btn{margin-top:12px}
+.motion-on .reveal-item{transition:opacity .65s ease var(--reveal-delay,0ms),translate .65s cubic-bezier(.2,.7,.2,1) var(--reveal-delay,0ms)}
+.motion-on .reveal-item:not(.is-revealed){opacity:0;translate:0 22px}
+.motion-on .reveal-item.is-revealed{opacity:1;translate:0 0}
+@media(min-width:1024px){
+ .motion-on .hero .bg img{transform:translateY(var(--hero-drift,0px)) scale(1.07)}
+ .motion-on .journey-layout{grid-template-columns:1.05fr 1fr}
+ .motion-on .journey-visual{display:block;position:sticky;top:110px;height:min(70vh,690px);overflow:hidden;background:#0e1520;box-shadow:-18px 18px 0 #101e33}
+ .motion-on .journey-chapters{grid-column:2}
+ .motion-on .journey-chapter{min-height:68vh;display:flex;flex-direction:column;justify-content:center;padding:65px 0}
+ .motion-on .chapter-mobile{display:none}
+ .journey-layer{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:0;transform:scale(1.035);transition:opacity .75s ease,transform 1.2s ease}
+ .journey-layer.is-active{opacity:1;transform:scale(1)}
+ .journey-shade{position:absolute;inset:0;background:linear-gradient(0deg,#050910dd,transparent 30%);pointer-events:none}
+ .journey-mark{position:absolute;bottom:28px;left:28px;font-family:var(--display);font-size:.95rem;text-transform:uppercase;letter-spacing:.18em;color:#d7e5fb}
+}
+@media(hover:hover) and (prefers-reduced-motion:no-preference){
+ .motion-on .product-preview:hover{transform:translateY(-7px) rotate(-.35deg);box-shadow:0 38px 60px -22px #07111f90}
+ .motion-on .product-preview:hover>img{transform:scale(1.025)}
+ .motion-on .btn:hover{transform:translateY(-2px);box-shadow:0 10px 26px #004fd238}
+}
+@media(max-width:700px){
+ #view-home .product-section{padding-top:55px}
+ #view-home .service-grid figure:nth-child(n){margin-top:0}
+ #view-home .foundation-feature .split{gap:34px}
+ #view-home .foundation-feature img{box-shadow:8px 8px 0 #0b244b}
+ .mission-journey{padding:58px 0}.journey-layout{display:block}.journey-intro{margin-bottom:10px}.journey-chapter{padding:32px 0 48px;border-bottom:1px solid #263145}.journey-close{padding-top:40px}
+ .motion-on .reveal-item:not(.is-revealed){translate:0 12px}
+}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+html:not(.motion-on) #view-home .hero .wrap{animation:none}
+/* Keep every Foundation label legible on its light surface. */
+#view-home .foundation-feature figcaption{color:#414c5b;margin-top:30px}
+#view-home .foundation-feature figcaption strong{color:#172538}
+#view-home .foundation-feature .btn.ghost:hover{color:#fff;background:#123967;border-color:#123967}
+html:not(.motion-on) .reveal-item{opacity:1;translate:0 0;transition:none}
+html:not(.motion-on) .journey-visual{display:none}
+@media(prefers-reduced-motion:reduce){.reveal-item{opacity:1!important;translate:none!important}}
