@@ -17,7 +17,7 @@
   p{margin:0 0 17px;max-width:64ch}
   a{color:inherit;text-decoration:none}
   :focus-visible{outline:2px solid var(--lit);outline-offset:3px}
-  img{display:block;max-width:100%}
+  img{display:block;max-width:100%;height:auto}
   .eyebrow{font-family:var(--display);font-weight:600;text-transform:uppercase;letter-spacing:.2em;font-size:.76rem;color:var(--lit);display:block;margin-bottom:14px}
 
   .btn{display:inline-flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:600;text-transform:uppercase;letter-spacing:.09em;font-size:.86rem;padding:15px 30px;border:2px solid transparent;border-radius:2px;cursor:pointer;transition:.18s;background:none}
@@ -550,3 +550,6 @@ html:not(.motion-on) .flag-fabric>g{filter:none}
 }
 
 #view-home .hero-scripture blockquote,#view-home .hero-scripture cite{color:#fff;text-shadow:0 2px 6px rgba(0,0,0,.9)}
+
+/* Preserve the brand mark proportions at header and footer sizes. */
+.brand img,.fgrid img{height:auto;object-fit:contain;flex-shrink:0;aspect-ratio:320 / 213}
