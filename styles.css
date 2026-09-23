@@ -530,3 +530,11 @@ html:not(.motion-on) .flag-fabric>g{filter:none}
 @media(min-width:851px){#view-home .hero>.hero-commerce{min-height:630px}#view-home .hero-showcase{padding-top:12px}}
 @media(max-width:850px){#view-home .hero>.hero-commerce{grid-template-columns:1fr;gap:28px;padding-left:24px;padding-right:24px}#view-home .hero-showcase{width:100%;max-width:480px;margin:0 auto}#view-home .hero-showcase .hero-scripture{margin:0 0 20px}#view-home .hero-showcase .hero-bag-brazil{max-width:190px}#view-home .hero-showcase .hero-bag-espresso{max-width:200px}}
 @media(min-width:851px) and (max-height:780px){#view-home .hero>.hero-commerce{min-height:0}#view-home .hero-showcase .hero-bag-brazil{max-width:220px}#view-home .hero-showcase .hero-bag-espresso{max-width:235px}#view-home .hero-showcase .hero-scripture{margin-bottom:18px}}
+
+/* Keep the flag recognizable in the taller phone hero, with an image fallback. */
+@media(max-width:850px){
+ #view-home .hero .bg{background:#080c12 url('hero-flag-muted-color.webp') 65% top / auto 100% no-repeat}
+ #view-home .hero .hero-flag{opacity:.88;inset:0;overflow:hidden}
+ #view-home .hero .flag-fabric{position:absolute;top:0;left:-45%;width:160%;height:100%;min-height:100%;max-width:none}
+ #view-home .hero .scrim{background:linear-gradient(90deg,rgba(6,8,12,.53),rgba(6,8,12,.24)),linear-gradient(0deg,rgba(6,8,12,.18),transparent 65%)}
+}
