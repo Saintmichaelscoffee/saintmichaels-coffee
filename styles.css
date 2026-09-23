@@ -469,8 +469,8 @@ html:not(.motion-on) .flag-fabric>g{filter:none}
 @media(prefers-reduced-motion:reduce){.flag-fabric>g{filter:none}}
 
 /* Photographic fabric supplies real folds; displacement adds gentle wind. */
-#view-home .hero .hero-flag{opacity:.88;inset:-3%}
+#view-home .hero .hero-flag{opacity:.792;inset:-3%}
 #view-home .hero .scrim{background:linear-gradient(90deg,rgba(6,8,12,.76),rgba(6,8,12,.42) 52%,rgba(6,8,12,.12)),linear-gradient(0deg,rgba(6,8,12,.3),transparent 65%)}
-@media(max-width:700px){#view-home .hero .hero-flag{opacity:.68}#view-home .hero .scrim{background:linear-gradient(90deg,rgba(6,8,12,.67),rgba(6,8,12,.35))}}
+@media(max-width:700px){#view-home .hero .hero-flag{opacity:.612}#view-home .hero .scrim{background:linear-gradient(90deg,rgba(6,8,12,.67),rgba(6,8,12,.35))}}
 
 #view-home .collection-launch-note{max-width:720px;margin:32px auto 0;text-align:center;color:#303844;font-size:1.05rem;line-height:1.65;padding:0 26px}
