@@ -267,3 +267,38 @@ nav.v{flex-wrap:wrap}nav.v a{white-space:nowrap}
 .hero-scripture blockquote{font-family:var(--script);font-size:clamp(1.8rem,2.7vw,2.6rem);line-height:1.3;margin:0;color:#fff6e6}
 .hero-scripture cite{display:block;font-family:var(--display);font-size:.78rem;font-style:normal;letter-spacing:.22em;text-transform:uppercase;margin-top:8px;color:#eee}
 @media(max-width:1023px){.hero{flex-direction:column;align-items:stretch}.hero-scripture{position:relative;right:auto;bottom:auto;text-align:left;padding:0 26px 32px;width:100%;max-width:var(--wrap);margin:0 auto}.hero .wrap{padding-bottom:26px}}
+
+/* Homepage hierarchy and depth. Shared Shop styling is unchanged. */
+#view-home .hero{border-bottom:4px solid var(--blue)}
+#view-home .hero-scripture{position:relative;right:auto;bottom:auto;z-index:auto;width:auto;max-width:none;margin:26px 0 30px;padding:2px 0 2px 20px;border-left:3px solid var(--blue);text-align:left;text-shadow:none}
+#view-home .hero-scripture blockquote{font-size:clamp(1.75rem,2.4vw,2.25rem)}
+#view-home .hero-scripture cite{font-size:.72rem;margin-top:5px;color:#b9c7d9}
+#view-home .product-section{padding:78px 0 90px;background:radial-gradient(ellipse at 50% 0%,#fffdf7 0%,#eee9df 72%);color:#171d27;border-bottom:1px solid #d6d0c5}
+#view-home .collection-intro{text-align:center;margin-bottom:40px}
+#view-home .collection-intro .eyebrow{color:#0647b6}
+#view-home .collection-intro h2{color:#111722;font-size:clamp(2.4rem,4vw,3.5rem);margin:10px 0 12px}
+#view-home .collection-intro p{margin:0 auto;color:#59616d;font-size:1.2rem}
+#view-home .product-grid{gap:38px;max-width:1000px}
+#view-home .product-preview{padding:16px 16px 0;border:1px solid #343d4d;border-radius:8px;background:linear-gradient(145deg,#222934,#0b0e14);box-shadow:0 22px 40px -18px #101a2f70,0 3px 6px #101a2f20;transition:transform .25s ease,box-shadow .25s ease}
+#view-home .product-preview>img{border-radius:3px;width:100%;max-height:510px;object-fit:contain;background:#11100e}
+#view-home .product-copy{padding:26px 12px 30px;color:#fff}
+#view-home .product-copy h2{color:#fff;font-size:clamp(1.7rem,2.7vw,2.15rem)}
+#view-home .coffee-mission{background:linear-gradient(115deg,#101621,#1b2638);border-bottom:1px solid #354157}
+#view-home .coffee-mission .roastlite{border-left:3px solid var(--blue);box-shadow:0 14px 30px #0003}
+#view-home .service-section{background:#080b10;padding:82px 0 90px;border-top:1px solid #283346;border-bottom:1px solid #283346}
+#view-home .service-section h2{font-size:clamp(2.3rem,4vw,3.4rem)}
+#view-home .service-grid{gap:24px;align-items:stretch}
+#view-home .service-grid figure{background:linear-gradient(150deg,#1d2634,#10151d);border:1px solid #344156;border-radius:6px;overflow:hidden;box-shadow:0 18px 32px #0005}
+#view-home .service-grid img{height:390px;object-fit:contain;background:#080b10;border:0;width:100%}
+#view-home .service-grid figcaption{border-top:2px solid #144faa;margin:0;padding:22px 10px;color:#e6eaf1;font-size:1.15rem}
+#view-home .community-band{background:radial-gradient(ellipse at 50% 50%,#1c2c48,#0b1019 75%)}
+#view-home .signup{border:1px solid #3a4b66;border-top:3px solid var(--blue);box-shadow:0 20px 60px #0005}
+#view-home .foundation-feature{background:#f0ece4;color:#202936;border-block:1px solid #d7d0c3}
+#view-home .foundation-feature h2{color:#111a27}
+#view-home .foundation-feature p{color:#465060}
+#view-home .foundation-feature .eyebrow{color:#0647b6}
+#view-home .foundation-feature img{border:8px solid #fff;box-shadow:0 20px 40px #1c273c30}
+@media(hover:hover) and (prefers-reduced-motion:no-preference){#view-home .product-preview:hover{transform:translateY(-6px);box-shadow:0 30px 46px -18px #101a2f80}}
+@media(prefers-reduced-motion:no-preference){#view-home .hero .wrap{animation:hero-appear .6s ease-out both}@keyframes hero-appear{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}}
+@media(max-width:1023px){#view-home .hero .wrap{padding-bottom:38px}#view-home .service-grid img{height:310px}}
+@media(max-width:700px){#view-home .product-section{padding:48px 0 56px}#view-home .collection-intro{margin-bottom:28px}#view-home .product-preview{padding:12px 12px 0}#view-home .product-grid{gap:26px}#view-home .service-section{padding:54px 0}#view-home .service-grid img{height:auto;aspect-ratio:4/5;object-fit:contain}#view-home .hero-scripture{margin:22px 0 26px}}
