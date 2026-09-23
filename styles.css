@@ -548,3 +548,5 @@ html:not(.motion-on) .flag-fabric>g{filter:none}
  #view-home .hero-showcase>.row{order:2;align-self:stretch;justify-content:center;margin:28px 0 0;gap:12px}
  #view-home .hero-showcase>.row .btn{flex:1;min-width:140px;text-align:center}
 }
+
+#view-home .hero-scripture blockquote,#view-home .hero-scripture cite{color:#fff;text-shadow:0 2px 6px rgba(0,0,0,.9)}
