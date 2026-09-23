@@ -22,7 +22,7 @@
  }
  toggle?.addEventListener('click',()=>{paused=!paused;try{sessionStorage.setItem('sm-motion-paused',String(paused))}catch(_){}configure()});
  document.addEventListener('focusin',e=>e.target.closest('.reveal-item')?.classList.add('is-revealed'));
- addEventListener('scroll',schedule,{passive:true});addEventListener('resize',schedule,{passive:true});document.addEventListener('visibilitychange',schedule);reduce.addEventListener('change',configure);desktop.addEventListener('change',configure);
+ addEventListener('scroll',schedule,{passive:true});addEventListener('resize',schedule,{passive:true});document.addEventListener('visibilitychange',()=>{const fabric=hero?.querySelector('.flag-fabric');if(fabric){if(document.hidden||paused||reduce.matches||!hero.classList.contains('hero-visible'))fabric.pauseAnimations();else fabric.unpauseAnimations()}schedule()});reduce.addEventListener('change',configure);desktop.addEventListener('change',configure);
  const verse=document.querySelector('.hero-scripture');
  function entrance(){
   if(!verse||reduce.matches||paused||!verse.animate)return;
