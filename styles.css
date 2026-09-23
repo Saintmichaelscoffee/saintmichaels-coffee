@@ -302,3 +302,11 @@ nav.v{flex-wrap:wrap}nav.v a{white-space:nowrap}
 @media(prefers-reduced-motion:no-preference){#view-home .hero .wrap{animation:hero-appear .6s ease-out both}@keyframes hero-appear{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}}
 @media(max-width:1023px){#view-home .hero .wrap{padding-bottom:38px}#view-home .service-grid img{height:310px}}
 @media(max-width:700px){#view-home .product-section{padding:48px 0 56px}#view-home .collection-intro{margin-bottom:28px}#view-home .product-preview{padding:12px 12px 0}#view-home .product-grid{gap:26px}#view-home .service-section{padding:54px 0}#view-home .service-grid img{height:auto;aspect-ratio:4/5;object-fit:contain}#view-home .hero-scripture{margin:22px 0 26px}}
+
+/* Natural, staggered service imagery with open space rather than cards. */
+#view-home .service-section{padding:94px 0 100px}
+#view-home .service-grid{gap:42px;margin-top:54px;align-items:start}
+#view-home .service-grid figure{background:none;border:0;border-radius:0;box-shadow:none;overflow:visible}
+#view-home .service-grid img{display:block;width:100%;height:auto;aspect-ratio:auto;object-fit:contain;border:0;border-radius:0;background:transparent}
+#view-home .service-grid figcaption{border:0;padding:25px 8px 0;margin:0;background:none;line-height:1.4}
+@media(max-width:700px){#view-home .service-section{padding:56px 0 64px}#view-home .service-grid{gap:42px;margin-top:34px;padding:0 8px}#view-home .service-grid img{height:auto;aspect-ratio:auto}#view-home .service-grid figcaption{padding-top:18px}}
