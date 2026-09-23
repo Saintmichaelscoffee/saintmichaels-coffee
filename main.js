@@ -7,7 +7,7 @@
  function paint(){frame=0;if(!root.classList.contains('motion-on')||!desktop.matches||document.hidden||!hero)return;const r=hero.getBoundingClientRect();if(r.bottom>0&&r.top<innerHeight)hero.style.setProperty('--hero-drift',Math.min(42,Math.max(-25,-r.top*.055))+'px')}
  function schedule(){if(!frame)frame=requestAnimationFrame(paint)}
  function configure(){
-  observer?.disconnect(); const enabled=!reduce.matches&&!paused;root.classList.toggle('motion-on',enabled);
+  observer?.disconnect(); const enabled=!reduce.matches&&!paused;root.classList.toggle('motion-on',enabled);const fabric=hero?.querySelector('.flag-fabric');if(fabric){if(enabled&&hero.classList.contains('hero-visible'))fabric.unpauseAnimations();else fabric.pauseAnimations()}
   if(toggle){toggle.hidden=reduce.matches;toggle.textContent=paused?'Enable motion':'Pause motion';toggle.setAttribute('aria-pressed',String(paused))}
   if(!enabled){verseAnimation?.cancel();hero?.style.removeProperty('--hero-drift')}
   const targets=[...document.querySelectorAll('.collection-intro,.product-preview,.service-grid figure,.split>div,.split>figure,.timeline>*,.post-card,.gallery-heading,.verse .wrap')];
@@ -43,7 +43,7 @@
    new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting&&!visible){visible=true;entrance()}else if(!e.isIntersecting){visible=false}}),{threshold:0}).observe(hero);
   }else entrance();
  });
- if(hero&&'IntersectionObserver' in window)new IntersectionObserver(entries=>entries.forEach(e=>hero.classList.toggle('hero-visible',e.isIntersecting))).observe(hero);
+ if(hero&&'IntersectionObserver' in window)new IntersectionObserver(entries=>entries.forEach(e=>{hero.classList.toggle('hero-visible',e.isIntersecting);const fabric=hero.querySelector('.flag-fabric');if(fabric){if(e.isIntersecting&&!paused&&!reduce.matches)fabric.unpauseAnimations();else fabric.pauseAnimations()}})).observe(hero);
  addEventListener('pageshow',e=>{if(e.persisted){configure();if(hero?.getBoundingClientRect().bottom>0)entrance()}});
  const gallery=document.querySelector('.mission-gallery');
  if(gallery){
