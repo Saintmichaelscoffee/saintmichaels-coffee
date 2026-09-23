@@ -446,3 +446,7 @@ html:not(.motion-on) .journey-visual{display:none}
 @keyframes flag-wave{0%{transform:perspective(1200px) rotateY(-5deg) skewY(-1.5deg) scale(1.06) translateX(-1%)}50%{transform:perspective(1200px) rotateY(3deg) skewY(.8deg) scale(1.09) translateX(1%)}100%{transform:perspective(1200px) rotateY(-2deg) skewY(-.5deg) scale(1.06) translateX(-.5%)}}
 @media(max-width:700px){.hero-flag{opacity:.1}#view-home .hero-scripture{padding:12px 14px}}
 @media(prefers-reduced-motion:reduce){.hero-flag img{animation:none!important}}
+
+#view-home .hero .hero-flag{opacity:.68;mix-blend-mode:normal;z-index:0}
+#view-home .hero .scrim{background:linear-gradient(90deg,rgba(6,8,12,.83),rgba(6,8,12,.5) 55%,rgba(6,8,12,.22)),linear-gradient(0deg,rgba(6,8,12,.45),transparent 65%)}
+#view-home .hero .hero-flag img{object-position:left center}
