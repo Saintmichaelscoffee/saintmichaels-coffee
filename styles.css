@@ -467,3 +467,8 @@ html:not(.motion-on) .journey-visual{display:none}
 .hero-flag .flag-fabric{display:block;width:100%;height:100%}
 html:not(.motion-on) .flag-fabric>g{filter:none}
 @media(prefers-reduced-motion:reduce){.flag-fabric>g{filter:none}}
+
+/* Photographic fabric supplies real folds; displacement adds gentle wind. */
+#view-home .hero .hero-flag{opacity:.88;inset:-3%}
+#view-home .hero .scrim{background:linear-gradient(90deg,rgba(6,8,12,.76),rgba(6,8,12,.42) 52%,rgba(6,8,12,.12)),linear-gradient(0deg,rgba(6,8,12,.3),transparent 65%)}
+@media(max-width:700px){#view-home .hero .hero-flag{opacity:.68}#view-home .hero .scrim{background:linear-gradient(90deg,rgba(6,8,12,.67),rgba(6,8,12,.35))}}
