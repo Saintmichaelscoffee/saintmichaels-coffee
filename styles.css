@@ -477,3 +477,23 @@ html:not(.motion-on) .flag-fabric>g{filter:none}
 
 /* A small lift in fabric highlights; text scrim remains above this layer. */
 #view-home .hero .hero-flag{filter:brightness(1.12)}
+
+/* Product-led hero: original animated flag remains a separate background. */
+#view-home .hero>.hero-commerce{display:grid;grid-template-columns:1.12fr 1fr;gap:24px;align-items:center;padding-top:64px;padding-bottom:54px}
+.hero-copy{min-width:0;position:relative;z-index:3}
+#view-home .hero h1{font-size:clamp(3.2rem,5.1vw,5.2rem);line-height:1.04;max-width:none;margin:18px 0 20px}
+#view-home .hero .hero-tagline{font-family:Georgia,serif;font-size:clamp(1.4rem,2.25vw,2rem);font-weight:700;line-height:1.3;margin:0 0 20px;color:#fff}
+#view-home .hero .hero-lead{font-size:clamp(1.1rem,1.6vw,1.4rem);max-width:34ch;margin:0 0 26px}
+#view-home .hero .row{gap:12px;flex-wrap:wrap}
+#view-home .hero .btn{padding:16px 22px;font-size:.92rem}
+#view-home .hero-scripture{margin:30px 0 0;padding:10px 0 10px 18px;max-width:560px}
+#view-home .hero-scripture blockquote{font-size:clamp(1rem,1.25vw,1.15rem)}
+.hero-products{display:flex;align-items:flex-end;justify-content:center;position:relative;min-width:0;padding-top:70px;isolation:isolate}
+.hero-products:after{content:"";position:absolute;bottom:10px;left:5%;width:90%;height:28px;background:#000;filter:blur(16px);opacity:.8;z-index:-1}
+.hero-bag{display:block;flex:0 0 55%;max-width:285px;filter:drop-shadow(0 15px 12px rgba(0,0,0,.55))}
+.hero-bag img{display:block;width:100%;height:auto;clip-path:polygon(17% 2%,87% 3%,91% 6%,92% 93%,84% 95%,15% 97%,5% 92%,6% 26%)}
+.hero-bag-brazil{margin-right:-7%;transform:translateY(-12px) rotate(-3deg);z-index:0}
+.hero-bag-espresso{transform:rotate(3deg);z-index:1}
+@media(hover:hover) and (prefers-reduced-motion:no-preference){.hero-bag{transition:transform .3s ease}.hero-bag:hover{transform:translateY(-9px)}}
+.hero-bag:focus-visible{outline:3px solid #559bff;outline-offset:5px}
+@media(max-width:850px){#view-home .hero>.hero-commerce{grid-template-columns:1fr;gap:24px;padding-top:36px;padding-bottom:36px}#view-home .hero h1{font-size:clamp(2.8rem,8vw,4rem)}.hero-products{padding-top:0;width:100%;max-width:450px;margin:0 auto}.hero-bag{max-width:215px}#view-home .hero-scripture{margin-top:26px}#view-home .hero .hero-lead{max-width:40ch}}
