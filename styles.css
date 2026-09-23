@@ -249,3 +249,15 @@ nav.v{flex-wrap:wrap}nav.v a{white-space:nowrap}
 .product-preview{overflow:hidden;border:1px solid var(--line);background:#0a0b0d}.product-preview>img{width:100%;height:auto;display:block}.product-copy{padding:28px;text-align:center}.product-copy h2{font-size:2rem;margin:8px 0 22px}
 .service-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-top:38px;align-items:start}.service-grid figure{margin:0}.service-grid img{width:100%;height:auto;display:block;border:1px solid var(--line)}.service-grid figcaption{padding:18px 6px;text-align:center;font-family:var(--display);font-size:1.25rem;text-transform:uppercase;letter-spacing:.04em}
 @media(max-width:700px){.product-grid,.service-grid{grid-template-columns:1fr;max-width:480px}.service-grid{margin-left:auto;margin-right:auto;gap:24px}.product-copy{padding:22px}.hero .bg img{object-position:70% center}.hero .scrim{background:rgba(6,8,12,.65)}.verse-full{padding:42px 0}}
+
+/* Desktop hero refinement; existing phone/tablet styles are preserved. */
+@media (min-width:1024px){
+  .hero{min-height:780px}
+  .hero .wrap{padding-top:76px;padding-bottom:76px}
+  .hero h1{font-size:clamp(4.8rem,6.5vw,6.25rem);line-height:1.06;max-width:17ch;margin-bottom:28px}
+  .hero .hero-lead{font-size:1.65rem;max-width:34ch;line-height:1.45;margin-bottom:26px}
+  .hero p{font-size:1.2rem;max-width:48ch}
+  .hero .eyebrow{font-size:.9rem}
+  .hero .btn{font-size:1rem;padding:18px 34px}
+  .hero .scrim{background:linear-gradient(90deg,rgba(6,8,12,.9),rgba(6,8,12,.68) 48%,rgba(6,8,12,.43) 80%),linear-gradient(0deg,rgba(6,8,12,.35),transparent 55%)}
+}
