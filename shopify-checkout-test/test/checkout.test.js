@@ -26,7 +26,7 @@ test('access control, origin check, cart attribute, and checkout host', async ()
   return { ok: true, json: async () => ({ data: { cartCreate: { cart: { checkoutUrl: 'https://b95as8-ck.myshopify.com/checkouts/test' }, userErrors: [] } } }) };
  };
  const result = await handle(request(), env, fetcher);
- assert.equal(result.status, 303);
- assert.equal(result.headers.get('location'), 'https://b95as8-ck.myshopify.com/checkouts/test');
+ assert.equal(result.status, 200);
+ assert.match(await result.text(), /href="https:\/\/b95as8-ck\.myshopify\.com\/checkouts\/test"/);
  assert.equal(calls, 3);
 });
