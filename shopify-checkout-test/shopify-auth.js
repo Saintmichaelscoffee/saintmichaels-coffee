@@ -10,7 +10,11 @@ export async function storefrontPrivateToken({domain,clientId,clientSecret,fetch
    method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},
    body:new URLSearchParams({grant_type:'client_credentials',client_id:clientId,client_secret:clientSecret}).toString()
   });
-  if(!auth.ok)throw Error('Shopify app authentication failed');
+  if(!auth.ok){
+   let code='unknown';
+   try {const detail=await auth.json(); if(typeof detail.error==='string')code=detail.error.slice(0,64);} catch {}
+   throw Error(`Shopify app authentication failed (${auth.status}, ${code})`);
+  }
   const data=await auth.json();
   if(!data.access_token || !Number.isFinite(data.expires_in))throw Error('Shopify returned invalid app credentials');
   const needed=['unauthenticated_read_product_listings','unauthenticated_read_checkouts','unauthenticated_write_checkouts'];
