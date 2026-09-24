@@ -1,0 +1,33 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { spawn } from 'node:child_process';
+import { createHmac } from 'node:crypto';
+import { mkdtempSync, readFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+import { DatabaseSync } from 'node:sqlite';
+
+test('application, admin approval, activation, referral, verified order and cancellation',async t=>{
+ const dir=mkdtempSync(join(tmpdir(),'sm-aff-')),port=33990+Math.floor(Math.random()*900),base=`http://127.0.0.1:${port}`;
+ const proc=spawn(process.execPath,['server.js'],{cwd:new URL('..',import.meta.url),env:{...process.env,PORT:String(port),AFFILIATE_DB:join(dir,'test.sqlite'),ADMIN_EMAIL:'owner@example.com',ADMIN_PASSWORD:'securepassword123',SESSION_SECRET:'012345678901234567890123456789012345',SHOPIFY_WEBHOOK_SECRET:'webhook-secret'}});
+ t.after(()=>proc.kill());let online=false;for(let i=0;i<80;i++){try{const x=await fetch(base+'/affiliate');if(x.ok){online=true;break;}}catch{}await new Promise(r=>setTimeout(r,40));}assert.equal(online,true,'server started');
+ const post=async(path,values,cookie)=>fetch(base+path,{method:'POST',body:new URLSearchParams(values),headers:{Origin:base,...(cookie?{Cookie:cookie}:{})},redirect:'manual'});
+ const apply=await post('/affiliate/apply',{first:'Jane',last:'Smith',email:'jane@example.com',phone:'8035550101',city:'Rock Hill',state:'SC',country:'US',promotion:'Community events',about:'Veteran community',why:'Love coffee',ack0:'yes',ack1:'yes',ack2:'yes',ack3:'yes'});assert.equal(apply.status,200);
+ const noAdmin=await fetch(base+'/admin/affiliates');assert.equal(noAdmin.status,403);
+ const login=await post('/affiliate/login',{email:'owner@example.com',password:'securepassword123'});assert.equal(login.status,303);const admin=login.headers.get('set-cookie').split(';')[0];
+ const review=await fetch(base+'/admin/affiliates/application/1',{headers:{Cookie:admin}});assert.equal(review.status,200);assert.match(await review.text(),/Veteran community/);
+ const approve=await post('/admin/affiliates/application/1',{decision:'approved',code:'JANE',kind:'commission',rate_type:'percent',rate:'10',notes:'Reviewed'},admin);assert.equal(approve.status,303);
+ const db=new DatabaseSync(join(dir,'test.sqlite'));let out=db.prepare("SELECT body FROM outbox WHERE subject='Affiliate application approved'").get().body;const token=new URL(out.split('Activate your account: ')[1]).searchParams.get('token');
+ const activation=await post('/affiliate/activate',{token,password:'jane-secure-pass'});assert.equal(activation.status,303);const affiliate=activation.headers.get('set-cookie').split(';')[0];
+ const dashboard=await fetch(base+'/affiliate/dashboard',{headers:{Cookie:affiliate}});assert.match(await dashboard.text(),/api\/referral\?ref=JANE/);
+ const assets=await fetch(base+'/affiliate/assets',{headers:{Cookie:affiliate}});assert.match(await assets.text(),/checkbox/);
+ const accept=await post('/affiliate/assets/accept',{agree:'yes'},affiliate);assert.equal(accept.status,303);
+ const referral=await fetch(base+'/api/referral?ref=JANE&to=/shop.html',{redirect:'manual'});assert.equal(referral.status,303);assert.equal(referral.headers.get('location'),'/shop.html');
+ const webhook=async(topic,order)=>{const raw=JSON.stringify(order);return fetch(base+'/api/shopify/webhook',{method:'POST',body:raw,headers:{'X-Shopify-Topic':topic,'X-Shopify-Hmac-Sha256':createHmac('sha256','webhook-secret').update(raw).digest('base64')}});};
+ const fake=await fetch(base+'/api/shopify/webhook',{method:'POST',body:'{}',headers:{'X-Shopify-Topic':'orders/paid','X-Shopify-Hmac-Sha256':'bad'}});assert.equal(fake.status,401);
+ const paid=await webhook('orders/paid',{id:456,current_subtotal_price:'100.00',note_attributes:[{name:'sm_affiliate_code',value:'JANE'}]});assert.equal(paid.status,200);assert.equal(db.prepare("SELECT amount FROM commissions WHERE shopify_id='456'").get().amount,10);
+ await webhook('orders/paid',{id:456,current_subtotal_price:'100.00',note_attributes:[{name:'sm_affiliate_code',value:'JANE'}]});assert.equal(db.prepare('SELECT COUNT(*) n FROM commissions').get().n,1);
+ await webhook('orders/cancelled',{id:456});assert.equal(db.prepare("SELECT status FROM commissions WHERE shopify_id='456'").get().status,'reversed');
+ const cross=await fetch(base+'/admin/affiliates/outbox',{headers:{Cookie:affiliate}});assert.equal(cross.status,403);
+ db.close();
+});
