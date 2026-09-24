@@ -553,3 +553,13 @@ html:not(.motion-on) .flag-fabric>g{filter:none}
 
 /* Preserve the brand mark proportions at header and footer sizes. */
 .brand img,.fgrid img{height:auto;object-fit:contain;flex-shrink:0;aspect-ratio:320 / 213}
+
+/* Family photograph paired with the origin of the Saint Michaels name. */
+.story-origin{display:grid;grid-template-columns:minmax(0,340px) minmax(0,1fr);gap:56px;align-items:center;max-width:1040px;margin:0 auto 56px}
+.sister-portrait{margin:0;padding:12px;background:#192230;border:1px solid #344358;border-radius:4px;box-shadow:0 24px 48px -20px #000b}
+.sister-portrait img{display:block;width:100%;height:auto;border-radius:2px}
+.sister-portrait figcaption{padding:18px 10px 8px;text-align:center}
+.sister-portrait figcaption strong{display:block;color:#fff;font-size:1.12rem}
+.sister-portrait figcaption span{display:block;color:#c2cbd7;font-size:.92rem;margin-top:4px}
+.story-origin .timeline{margin:0;max-width:none}
+@media(max-width:760px){.story-origin{grid-template-columns:1fr;gap:32px;margin-bottom:36px}.sister-portrait{width:min(100%,340px);box-sizing:border-box;justify-self:center}.story-origin .timeline{width:100%}}
