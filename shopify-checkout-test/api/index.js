@@ -39,13 +39,13 @@ export async function handle(request, env = process.env, fetcher = fetch) {
   const checkout = new URL(cart.cart.checkoutUrl);
   const allowed = [domain, env.SHOPIFY_CHECKOUT_DOMAIN].filter(Boolean);
   if (checkout.protocol !== 'https:' || !allowed.includes(checkout.hostname)) return response('Unexpected checkout domain.', 502);
-  return response(null, 303, { Location: checkout.href });
+  return response(`<!doctype html><html lang="en"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Cart created</title><style>body{font:16px/1.5 system-ui;background:#101722;color:white;max-width:42rem;margin:5rem auto;padding:1rem}a{color:#fff;background:#235c96;display:inline-block;padding:.8rem 1.2rem;border-radius:.3rem}</style><h1>Test cart created</h1><p>Your referral code was added to the cart.</p><p><a href="${checkout.href.replaceAll('&','&amp;').replaceAll('"','&quot;')}">Open Shopify checkout</a></p><p>Shopify checkout may require a storefront password or payment setup before an order can be placed.</p></html>`, 200, { 'Content-Type': 'text/html; charset=utf-8', 'Content-Security-Policy': "default-src 'none'; style-src 'unsafe-inline'; base-uri 'none'; frame-ancestors 'none'" });
  } catch (error) {
   console.error('Checkout test failed', error);
   return response('Checkout test failed. Check server logs.', 502);
  }
 }
 
-
-// Vercel Web handler returns a Response directly.
+// Vercel's Web handler expects a fetch property. A legacy default function
+// receives Node's request/response pair and cannot return a Web Response.
 export default { fetch(request) { return handle(request); } };
