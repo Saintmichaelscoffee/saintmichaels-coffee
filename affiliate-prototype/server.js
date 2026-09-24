@@ -13,6 +13,7 @@ CREATE TABLE IF NOT EXISTS applications(id INTEGER PRIMARY KEY,user_id INTEGER U
 CREATE TABLE IF NOT EXISTS tokens(hash TEXT PRIMARY KEY,user_id INTEGER REFERENCES users(id),purpose TEXT,expires INTEGER);
 CREATE TABLE IF NOT EXISTS sessions(hash TEXT PRIMARY KEY,user_id INTEGER REFERENCES users(id),expires INTEGER);
 CREATE TABLE IF NOT EXISTS events(id INTEGER PRIMARY KEY,user_id INTEGER REFERENCES users(id),visitor TEXT,created TEXT DEFAULT CURRENT_TIMESTAMP);
+CREATE TABLE IF NOT EXISTS referral_sessions(hash TEXT PRIMARY KEY,user_id INTEGER REFERENCES users(id),expires INTEGER);
 CREATE TABLE IF NOT EXISTS orders(shopify_id TEXT PRIMARY KEY,user_id INTEGER REFERENCES users(id),amount REAL NOT NULL DEFAULT 0,status TEXT NOT NULL,updated TEXT DEFAULT CURRENT_TIMESTAMP);
 CREATE TABLE IF NOT EXISTS commissions(shopify_id TEXT PRIMARY KEY REFERENCES orders(shopify_id),user_id INTEGER REFERENCES users(id),amount REAL NOT NULL,status TEXT NOT NULL,updated TEXT DEFAULT CURRENT_TIMESTAMP);
 CREATE TABLE IF NOT EXISTS audit(id INTEGER PRIMARY KEY,actor INTEGER,action TEXT,detail TEXT,created TEXT DEFAULT CURRENT_TIMESTAMP);
@@ -112,8 +113,23 @@ export async function handler(req,res){
   if(req.method==='GET'&&path==='/admin/affiliates/audit'){if(!requireRole(res,user,'admin'))return;return page(res,'Audit',`<h1>Audit records</h1>${all('SELECT * FROM audit ORDER BY id DESC LIMIT 100').map(x=>`<article>${esc(x.created)} · ${esc(x.action)} · ${esc(x.detail)}</article>`).join('')}`);}
   if(req.method==='GET'&&path==='/api/referral'){
    const code=(url.searchParams.get('ref')||'').toUpperCase();const dest=safePath(url.searchParams.get('to')||'/');const aff=q("SELECT id FROM users WHERE code=? AND status='active'",code);
-   if(aff){const visit=randomBytes(16).toString('hex');run('INSERT INTO events(user_id,visitor) VALUES(?,?)',aff.id,sha(req.headers['user-agent']+':'+req.socket.remoteAddress+':'+new Date().toISOString().slice(0,10)));return redirect(res,dest,{'Set-Cookie':`sm_ref=${encodeURIComponent(code)}; Path=/; Max-Age=2592000; SameSite=Lax${process.env.NODE_ENV==='production'?'; Secure':''}`});}
+   if(aff){const visit=randomBytes(32).toString('hex');run('INSERT INTO referral_sessions(hash,user_id,expires) VALUES(?,?,?)',sha(visit),aff.id,Date.now()+30*86400000);run('INSERT INTO events(user_id,visitor) VALUES(?,?)',aff.id,sha(req.headers['user-agent']+':'+req.socket.remoteAddress+':'+new Date().toISOString().slice(0,10)));return redirect(res,dest,{'Set-Cookie':`sm_ref=${visit}; HttpOnly; Path=/; Max-Age=2592000; SameSite=Lax${process.env.NODE_ENV==='production'?'; Secure':''}`});}
    return redirect(res,dest);
+  }
+  if(req.method==='POST'&&path==='/api/shopify/cart'){
+   await body(req);
+   const domain=process.env.SHOPIFY_STORE_DOMAIN||'',token=process.env.SHOPIFY_STOREFRONT_TOKEN||'',variant=process.env.SHOPIFY_VARIANT_ID||'';
+   if(!/^[a-z0-9-]+\.myshopify\.com$/.test(domain)||!token||!/^gid:\/\/shopify\/ProductVariant\/\d+$/.test(variant))return sendJson(res,{error:'Shopify checkout is not configured'},503);
+   const ref=/(?:^|; )sm_ref=([a-f0-9]{64})/.exec(req.headers.cookie||'')?.[1];
+   const affiliate=ref?q("SELECT users.code FROM referral_sessions JOIN users ON users.id=referral_sessions.user_id WHERE referral_sessions.hash=? AND referral_sessions.expires>? AND users.status='active'",sha(ref),Date.now()):null;
+   const query='mutation CartCreate($input: CartInput) { cartCreate(input: $input) { cart { checkoutUrl } userErrors { field message } } }';
+   const variables={input:{lines:[{merchandiseId:variant,quantity:1}],attributes:affiliate?[{key:'sm_affiliate_code',value:affiliate.code}]:[]}};
+   const response=await fetch(`https://${domain}/api/2026-07/graphql.json`,{method:'POST',headers:{'Content-Type':'application/json','X-Shopify-Storefront-Access-Token':token},body:JSON.stringify({query,variables})});
+   if(!response.ok)return sendJson(res,{error:'Shopify could not create a cart'},502);
+   const result=await response.json(),checkout=result.data?.cartCreate?.cart?.checkoutUrl;
+   if(result.errors?.length||result.data?.cartCreate?.userErrors?.length||!checkout)return sendJson(res,{error:'Shopify rejected the cart'},502);
+   const target=new URL(checkout);const allowed=[domain,process.env.SHOPIFY_CHECKOUT_DOMAIN].filter(Boolean);if(target.protocol!=='https:'||!allowed.includes(target.hostname))return sendJson(res,{error:'Unexpected checkout URL'},502);
+   return redirect(res,target.toString());
   }
   if(req.method==='POST'&&path==='/api/shopify/webhook'){
    const raw=await body(req),key=process.env.SHOPIFY_WEBHOOK_SECRET;if(!key)return sendJson(res,{error:'Webhook not configured'},503);const got=req.headers['x-shopify-hmac-sha256']||'',want=createHmac('sha256',key).update(raw).digest('base64');if(got.length!==want.length||!timingSafeEqual(Buffer.from(got),Buffer.from(want)))return sendJson(res,{error:'Invalid signature'},401);
