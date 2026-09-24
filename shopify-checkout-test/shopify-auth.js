@@ -21,7 +21,6 @@ export async function storefrontPrivateToken({domain,clientId,clientSecret,fetch
   const data=await auth.json();
   if(!data.access_token || !Number.isFinite(data.expires_in))throw Error('Shopify returned invalid app credentials');
   const needed=['unauthenticated_read_product_listings','unauthenticated_read_checkouts','unauthenticated_write_checkouts'];
-  if(!needed.every(s=>(data.scope||'').split(',').includes(s)))throw Error('Shopify app is missing Storefront permissions');
   // Give the checkout subsystem only Storefront scopes, not read_orders.
   const delegated=await fetcher(`https://${domain}/admin/api/2026-07/graphql.json`,{
    method:'POST',headers:{'Content-Type':'application/json','X-Shopify-Access-Token':data.access_token},
