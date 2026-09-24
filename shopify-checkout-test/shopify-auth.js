@@ -12,7 +12,10 @@ export async function storefrontPrivateToken({domain,clientId,clientSecret,fetch
   });
   if(!auth.ok){
    let code='unknown';
-   try {const detail=await auth.json(); if(typeof detail.error==='string')code=detail.error.slice(0,64);} catch {}
+   try {
+    const body=await auth.text();
+    code=['shop_not_permitted','app_not_installed','invalid_client','invalid_request','unauthorized_client','invalid_grant'].find(value=>body.includes(value))||'unknown';
+   } catch {}
    throw Error(`Shopify app authentication failed (${auth.status}, ${code})`);
   }
   const data=await auth.json();
