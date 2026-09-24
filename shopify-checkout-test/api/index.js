@@ -46,4 +46,6 @@ export async function handle(request, env = process.env, fetcher = fetch) {
  }
 }
 
-export default function handler(request) { return handle(request); }
+
+// Vercel Web handler returns a Response directly.
+export default { fetch(request) { return handle(request); } };
