@@ -23,6 +23,8 @@ test('application, admin approval, activation, referral, verified order and canc
  const assets=await fetch(base+'/affiliate/assets',{headers:{Cookie:affiliate}});assert.match(await assets.text(),/checkbox/);
  const accept=await post('/affiliate/assets/accept',{agree:'yes'},affiliate);assert.equal(accept.status,303);
  const referral=await fetch(base+'/api/referral?ref=JANE&to=/shop.html',{redirect:'manual'});assert.equal(referral.status,303);assert.equal(referral.headers.get('location'),'/shop.html');
+ const referralCookie=referral.headers.get('set-cookie');assert.match(referralCookie,/sm_ref=[a-f0-9]{64}/);assert.doesNotMatch(referralCookie,/JANE/);
+ const checkout=await fetch(base+'/api/shopify/cart',{method:'POST',headers:{Origin:base,Cookie:referralCookie}});assert.equal(checkout.status,503);assert.match(await checkout.text(),/not configured/);
  const webhook=async(topic,order)=>{const raw=JSON.stringify(order);return fetch(base+'/api/shopify/webhook',{method:'POST',body:raw,headers:{'X-Shopify-Topic':topic,'X-Shopify-Hmac-Sha256':createHmac('sha256','webhook-secret').update(raw).digest('base64')}});};
  const fake=await fetch(base+'/api/shopify/webhook',{method:'POST',body:'{}',headers:{'X-Shopify-Topic':'orders/paid','X-Shopify-Hmac-Sha256':'bad'}});assert.equal(fake.status,401);
  const paid=await webhook('orders/paid',{id:456,current_subtotal_price:'100.00',note_attributes:[{name:'sm_affiliate_code',value:'JANE'}]});assert.equal(paid.status,200);assert.equal(db.prepare("SELECT amount FROM commissions WHERE shopify_id='456'").get().amount,10);
