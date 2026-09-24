@@ -4,6 +4,7 @@ import { randomBytes, createHmac, timingSafeEqual, scryptSync, createHash } from
 import { mkdirSync, readFileSync, existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { storefrontPrivateToken } from './shopify-auth.js';
 
 const root = dirname(fileURLToPath(import.meta.url));
 const db = new DatabaseSync(process.env.AFFILIATE_DB || join(root, 'affiliate.sqlite'));
@@ -118,13 +119,17 @@ export async function handler(req,res){
   }
   if(req.method==='POST'&&path==='/api/shopify/cart'){
    await body(req);
-   const domain=process.env.SHOPIFY_STORE_DOMAIN||'',token=process.env.SHOPIFY_STOREFRONT_TOKEN||'',variant=process.env.SHOPIFY_VARIANT_ID||'';
-   if(!/^[a-z0-9-]+\.myshopify\.com$/.test(domain)||!token||!/^gid:\/\/shopify\/ProductVariant\/\d+$/.test(variant))return sendJson(res,{error:'Shopify checkout is not configured'},503);
+   const domain=process.env.SHOPIFY_STORE_DOMAIN||'',variant=process.env.SHOPIFY_VARIANT_ID||'';
+   const publicToken=process.env.SHOPIFY_STOREFRONT_TOKEN||'';
+   const clientId=process.env.SHOPIFY_CLIENT_ID||'',clientSecret=process.env.SHOPIFY_CLIENT_SECRET||'';
+   if(!/^[a-z0-9-]+\.myshopify\.com$/.test(domain)||!(publicToken||(clientId&&clientSecret))||!/^gid:\/\/shopify\/ProductVariant\/\d+$/.test(variant))return sendJson(res,{error:'Shopify checkout is not configured'},503);
    const ref=/(?:^|; )sm_ref=([a-f0-9]{64})/.exec(req.headers.cookie||'')?.[1];
    const affiliate=ref?q("SELECT users.code FROM referral_sessions JOIN users ON users.id=referral_sessions.user_id WHERE referral_sessions.hash=? AND referral_sessions.expires>? AND users.status='active'",sha(ref),Date.now()):null;
    const query='mutation CartCreate($input: CartInput) { cartCreate(input: $input) { cart { checkoutUrl } userErrors { field message } } }';
    const variables={input:{lines:[{merchandiseId:variant,quantity:1}],attributes:affiliate?[{key:'sm_affiliate_code',value:affiliate.code}]:[]}};
-   const response=await fetch(`https://${domain}/api/2026-07/graphql.json`,{method:'POST',headers:{'Content-Type':'application/json','X-Shopify-Storefront-Access-Token':token},body:JSON.stringify({query,variables})});
+   const token=publicToken||await storefrontPrivateToken({domain,clientId,clientSecret});
+   const headers={'Content-Type':'application/json',...(publicToken?{'X-Shopify-Storefront-Access-Token':token}:{'Shopify-Storefront-Private-Token':token})};
+   const response=await fetch(`https://${domain}/api/2026-07/graphql.json`,{method:'POST',headers,body:JSON.stringify({query,variables})});
    if(!response.ok)return sendJson(res,{error:'Shopify could not create a cart'},502);
    const result=await response.json(),checkout=result.data?.cartCreate?.cart?.checkoutUrl;
    if(result.errors?.length||result.data?.cartCreate?.userErrors?.length||!checkout)return sendJson(res,{error:'Shopify rejected the cart'},502);
