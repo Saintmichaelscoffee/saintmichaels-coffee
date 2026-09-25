@@ -563,3 +563,5 @@ html:not(.motion-on) .flag-fabric>g{filter:none}
 .sister-portrait figcaption span{display:block;color:#c2cbd7;font-size:.92rem;margin-top:4px}
 .story-origin .timeline{margin:0;max-width:none}
 @media(max-width:760px){.story-origin{grid-template-columns:1fr;gap:32px;margin-bottom:36px}.sister-portrait{width:min(100%,340px);box-sizing:border-box;justify-self:center}.story-origin .timeline{width:100%}}
+
+.article-copy table{border-collapse:collapse;width:100%;display:block;overflow-x:auto;margin:20px 0 28px;font-size:.96em}.article-copy th,.article-copy td{padding:10px 13px;border:1px solid #c4c8cf;text-align:left;vertical-align:top}.article-copy th{background:#e9edf3;color:#171d27}.article-copy tr:nth-child(even){background:#f5f6f8}
