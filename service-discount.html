@@ -11,11 +11,72 @@
 <main class="service-layout">
 <section class="service-intro" aria-labelledby="service-title"><span class="eyebrow">Military, Veterans &amp; First Responders</span><h1 id="service-title">You serve.<br><span>We give back.</span></h1><p>For the people who answer the call.<br>And a lifetime of service worth honoring.</p><p class="service-promise">Open to active and retired law enforcement, firefighters, EMS and other first responders, military personnel, and veterans. Simply confirm your eligibility when you sign up. No manual approval required.</p></section>
 <section class="service-panel" aria-labelledby="signup-title"><h2 id="signup-title">Your service. Your savings.</h2><p>Sign up once. Enjoy lifelong savings when ordering launches, using your registered email.</p><div class="service-offers"><div class="service-offer"><strong>10% OFF</strong><span>One-time orders</span></div><div class="service-offer"><strong>15% OFF</strong><span>Subscription orders</span></div></div><p class="service-small">15% total off the regular price on each subscription order. Discounts do not stack.</p>
-<div class="klaviyo-form-UM9Tzr"></div>
-<p class="service-small">Contacts are securely stored in our Service Discount Program list. Phone and text updates are optional. Text confirmation messages will begin after our sending number is verified.</p>
-<details class="service-sms-details"><summary>Text message details</summary><p>Text updates are optional and available to US mobile numbers. If you choose to opt in, Saint Michaels Coffee will send recurring automated marketing texts, including launch news and offers. You can join the Service Discount Program without providing a phone number or signing up for texts.</p><p>Message frequency varies. Message and data rates may apply. Reply STOP to unsubscribe or HELP for help. Consent is not a condition of purchase. For assistance, email <a href="mailto:info@saintmichaelscoffee.com">info@saintmichaelscoffee.com</a>.</p><p>Read our <a href="privacy.html">Privacy Policy</a> and <a href="mobile-terms.html">Mobile Terms of Service</a>.</p></details>
+<form id="service-signup" class="service-form">
+<img class="signup-logo" src="service-program-logo.png" alt="Saint Michaels Coffee service program logo">
+<h3>You Serve. We Give Back.</h3>
+<label class="service-field">Full name<input name="fullName" autocomplete="name" required maxlength="150"></label>
+<label class="service-field">Email<input name="email" type="email" autocomplete="email" required maxlength="254"></label>
+<label class="service-field">Service status<select name="status" required><option value="">Select your status</option><option>Active</option><option>Retired</option><option>Veteran</option></select></label>
+<fieldset><legend>Service category (select all that apply)</legend><div class="service-checks">
+<label class="service-check"><input type="checkbox" name="category" value="Law enforcement">Law enforcement</label>
+<label class="service-check"><input type="checkbox" name="category" value="Firefighter">Firefighter</label>
+<label class="service-check"><input type="checkbox" name="category" value="EMS / other first responder">EMS / other first responder</label>
+<label class="service-check"><input type="checkbox" name="category" value="Military">Military</label>
+<label class="service-check"><input type="checkbox" name="category" value="Veteran">Veteran</label>
+</div></fieldset>
+<label class="service-check"><input name="eligible" type="checkbox" required>I confirm that I am an active or retired first responder or military service member, or a military veteran.</label>
+<label class="service-field">Phone number (optional — US only)<input name="phone" type="tel" autocomplete="tel" inputmode="tel" aria-describedby="phone-help" maxlength="30"><span id="phone-help" class="service-small">Dashes are optional. Adding your number does not sign you up for texts.</span></label>
+<label class="service-check"><input name="smsConsent" type="checkbox" aria-describedby="sms-summary">Yes, send me text updates and offers (optional).</label>
+<p id="sms-summary" class="service-small">Optional recurring automated marketing texts from Saint Michaels Coffee. Msg &amp; data rates may apply. Consent is not a condition of purchase or enrollment. <a href="#sms-details">Text details</a>, <a href="privacy.html">Privacy Policy</a> &amp; <a href="mobile-terms.html">Mobile Terms</a>.</p>
+<p class="service-small">By joining, you agree to receive emails about your service discount program. Unsubscribe anytime.</p>
+<button type="submit">JOIN THE PROGRAM</button>
+<p id="signup-feedback" role="status" aria-live="polite" tabindex="-1" hidden></p>
+<noscript>Please enable JavaScript to sign up, or email info@saintmichaelscoffee.com for help.</noscript>
+</form>
+
+<details id="sms-details" class="service-sms-details"><summary>Text message details</summary><p>Text updates are optional and available to US mobile numbers. If you choose to opt in, Saint Michaels Coffee will send recurring automated marketing texts, including launch news and offers. You can join the Service Discount Program without providing a phone number or signing up for texts.</p><p>Message frequency varies. Message and data rates may apply. Reply STOP to unsubscribe or HELP for help. Consent is not a condition of purchase. For assistance, email <a href="mailto:info@saintmichaelscoffee.com">info@saintmichaelscoffee.com</a>.</p><p>Read our <a href="privacy.html">Privacy Policy</a> and <a href="mobile-terms.html">Mobile Terms of Service</a>.</p></details>
 </section></main>
 <section class="verse verse-short"><div class="wrap"><div class="rule"></div><blockquote>Here I am. Send me.</blockquote><cite>Isaiah 6:8</cite></div></section>
 <footer class="foot"><div class="wrap"><p>© 2026 Saint Michaels Coffee LLC · Veteran &amp; Law Enforcement Owned</p><a href="mailto:info@saintmichaelscoffee.com">info@saintmichaelscoffee.com</a> · <a href="privacy.html">Privacy Policy</a></div></footer>
-<script async src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=TitHKZ"></script>
+<style>
+.signup-logo{width:100%;max-width:360px;height:auto;margin:auto}.service-form h3{text-align:center;font-size:28px;margin:0 0 10px}.service-form{margin-top:24px}.service-form,.service-form legend,.service-form .service-check,.service-form input,.service-form select,.service-form button,.service-form .service-small{font-size:18px;font-weight:700}.service-field input,.service-field select{background:#F4F5F7;color:#0A0A0C;min-height:54px}.service-check input{width:22px;height:22px}.service-form .service-small{color:#F4F5F7;line-height:1.5;margin:0}.service-form a{text-decoration:underline;color:#078DFF}#signup-feedback{padding:16px;border:1px solid #777E88;border-radius:8px}.service-form [hidden]{display:none}
+</style>
+<script src="service-phone-validator.js"></script>
+<script>
+(function(){
+const form=document.getElementById('service-signup'), feedback=document.getElementById('signup-feedback');
+const phone=form.elements.phone, consent=form.elements.smsConsent, categories=Array.from(form.querySelectorAll('[name="category"]'));
+function validate(){
+categories[0].setCustomValidity(categories.some(c=>c.checked)?'':'Please select at least one service category.');
+phone.setCustomValidity('');
+const raw=phone.value.trim();
+if(!raw){if(consent.checked)phone.setCustomValidity('Enter a US mobile number to sign up for texts.');return null;}
+const parsed=window.libphonenumber?.parsePhoneNumberFromString(raw,'US');
+if(!parsed||parsed.country!=='US'||!parsed.isValid())phone.setCustomValidity('Please enter a valid US phone number.');
+return parsed;
+}
+form.addEventListener('input',validate);form.addEventListener('change',validate);
+async function subscribe(attributes,list){
+const response=await fetch('https://a.klaviyo.com/client/subscriptions/?company_id=TitHKZ',{method:'POST',headers:{'Content-Type':'application/vnd.api+json','Accept':'application/vnd.api+json','revision':'2026-07-15'},body:JSON.stringify({data:{type:'subscription',attributes:{custom_source:'Military & First Responder Discounts website form',profile:{data:{type:'profile',attributes}}},relationships:{list:{data:{type:'list',id:list}}}}}),signal:AbortSignal.timeout(20000)});
+if(response.status!==202)throw new Error('Signup was not accepted.');
+}
+form.addEventListener('submit',async event=>{
+event.preventDefault(); const parsed=validate(); if(!form.reportValidity())return;
+const button=form.querySelector('[type="submit"]');button.disabled=true;button.textContent='SUBMITTING…';feedback.hidden=false;feedback.textContent='Submitting your signup…';
+const fullName=form.elements.fullName.value.trim(), email=form.elements.email.value.trim();
+const properties={'Full Name':fullName,'Service Status':form.elements.status.value,'Service Category':categories.filter(c=>c.checked).map(c=>c.value),'Service Eligibility Confirmed':'Confirmed','Service Program Signup Source':'Website main form'};
+const attributes={email,first_name:fullName.split(/\s+/)[0],last_name:fullName.split(/\s+/).slice(1).join(' '),properties,subscriptions:{email:{marketing:{consent:'SUBSCRIBED'}}}};
+if(parsed)attributes.phone_number=parsed.number;
+let emailAccepted=false;
+try{
+await subscribe(attributes,'TB9NDd');emailAccepted=true;
+let smsFailed=false;
+if(consent.checked){try{await subscribe({email,phone_number:parsed.number,properties:{'Service SMS Checkbox Consent At':new Date().toISOString(),'Service SMS Consent Version':'20261002-main-form'},subscriptions:{sms:{marketing:{consent:'SUBSCRIBED'}}}},'WcMqfz');}catch(error){smsFailed=true;}}
+feedback.textContent='Thank you for your service! Your signup has been submitted. Check your inbox for a confirmation or welcome email. '+(smsFailed?'Your program signup is complete, but text signup could not be completed. Please email info@saintmichaelscoffee.com for help.':consent.checked?'Your text signup was also submitted. Text messages will begin after our sending number is verified.':'');
+form.querySelectorAll('input,select,button').forEach(element=>element.disabled=true);feedback.focus();
+}catch(error){feedback.textContent=emailAccepted?'Your program signup was received. Please email info@saintmichaelscoffee.com if you need help.':'We could not complete your signup. Please try again or email info@saintmichaelscoffee.com. Your signup has not been confirmed.';button.disabled=false;button.textContent='JOIN THE PROGRAM';feedback.focus();}
+});
+const smsDetails=document.getElementById('sms-details');form.querySelector('a[href="#sms-details"]').addEventListener('click',()=>{smsDetails.open=true;});
+})();
+</script>
 </body></html>
