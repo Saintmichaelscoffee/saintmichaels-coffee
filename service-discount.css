@@ -3,3 +3,33 @@
 .service-sms-details{margin-top:24px;border:1px solid #777E88;border-radius:8px;padding:16px 20px;color:#F4F5F7;font-size:18px;font-weight:600;line-height:1.6}.service-sms-details summary{cursor:pointer;font-weight:700}.service-sms-details a{color:#078DFF;text-decoration:underline}.service-sms-details p{margin:14px 0}
 
 .service-promise{font-size:18px!important;color:#F4F5F7!important;font-weight:600}.service-panel>p{color:#F4F5F7;font-size:18px;font-weight:600}.service-small{font-size:16px;line-height:1.6}.service-offer span{font-size:18px;font-weight:700}.service-offer strong{color:#F4F5F7}.service-panel h2,.service-panel>p{text-align:center}.klaviyo-form-UM9Tzr{min-height:400px}
+
+/* Balanced service page: benefits beside a compact signup card. */
+.service-layout{padding-top:64px;gap:44px;grid-template-columns:1.1fr 1fr}
+.signup-logo{display:block;width:100%;height:auto;margin:0 0 24px}
+.service-intro h1{font-size:clamp(44px,4.8vw,68px);margin:14px 0 18px}
+.service-intro p{margin:0 0 18px}
+.service-promise{padding-top:18px;font-size:17px!important;line-height:1.5!important}
+.service-benefits{margin-top:26px}
+.service-benefits h2{font-size:30px;margin:0 0 8px}
+.service-benefits>p{font-size:17px;line-height:1.5;margin:0}
+.service-offers{margin:18px 0 0}
+.service-offer{padding:16px}
+.service-panel{padding:28px}
+.service-panel h2{text-align:left;font-size:34px;margin:0 0 20px}
+.service-form{gap:14px;margin:0;font-size:17px;font-weight:600}
+.service-field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;min-width:0}
+.service-field{min-width:0;gap:6px}
+.service-field input,.service-field select{background:#F4F5F7;color:#0A0A0C;min-height:50px;font-size:17px;font-weight:600;padding:10px 12px}
+.service-form legend{font-size:17px;margin-bottom:8px}
+.service-check{font-size:16px;font-weight:600;line-height:1.4;gap:9px}
+.service-check input{width:20px;height:20px}
+.service-checks{gap:9px 12px}
+.service-form .service-small{font-size:14px;font-weight:400;color:#F4F5F7;line-height:1.45;margin:0}
+.service-form a{color:#078DFF;text-decoration:underline}
+.service-form button{font-size:17px;padding:14px}
+#signup-feedback{padding:16px;border:1px solid #777E88;border-radius:8px}
+.service-form [hidden]{display:none}
+.service-sms-details{font-size:15px;margin-top:18px;padding:12px 16px}
+@media(max-width:800px){.service-layout{grid-template-columns:1fr;padding-top:40px;gap:28px}.signup-logo{max-width:540px;margin:0 auto 24px}.service-panel{padding:24px}.service-intro h1{font-size:52px}}
+@media(max-width:540px){.service-field-row{grid-template-columns:1fr}.service-layout{padding-top:28px}.service-panel{padding:20px}.service-panel h2{font-size:30px}.service-benefits h2{font-size:28px}.service-offer span{font-size:16px}}
