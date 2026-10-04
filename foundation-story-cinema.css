@@ -33,3 +33,13 @@ body>.verse-short.foundation-light blockquote{color:#12356c}
 @media(hover:hover) and (prefers-reduced-motion:no-preference){.motion-on #view-foundation .response-steps article:hover{transform:translateY(-6px);box-shadow:0 27px 36px -20px #18385780}.motion-on #view-foundation .btn:hover{transform:translateY(-2px)}}
 @media(max-width:800px){#view-foundation>.band,#view-foundation>.verse{padding:55px 0}#view-foundation .split{gap:35px}#view-foundation .response-steps{grid-template-columns:1fr;gap:22px}#view-foundation .mission-callout{padding:28px;box-shadow:8px 13px 0 -5px #41638a44,0 20px 30px -18px #0009}#view-foundation .assistance-list{padding:16px 22px}#view-foundation .foundation-hero{min-height:590px}#view-foundation .foundation-hero-copy{padding-top:150px;padding-bottom:45px}}
 @media(prefers-reduced-motion:reduce){#view-foundation *{transition:none!important;animation:none!important}}
+
+/* Match the homepage's title weight and tracking, with a consistent reading rhythm. */
+#view-foundation h1,#view-foundation h2{font-family:var(--display);font-weight:800;letter-spacing:-.015em;line-height:1.06}
+#view-foundation h3{font-family:var(--display);font-size:clamp(1.5rem,2.2vw,1.875rem);font-weight:700;letter-spacing:normal;line-height:1.2}
+#view-foundation p,#view-foundation .response-steps p{font-family:var(--body);font-size:17px;font-weight:400;letter-spacing:normal;line-height:1.62}
+#view-foundation .foundation-hero-copy>p:not(.eyebrow){font-size:1.15rem}
+#view-foundation .eyebrow,#view-foundation p.eyebrow,#view-foundation .callout-kicker{font-family:var(--display);font-size:.76rem;font-weight:600;letter-spacing:.2em;line-height:1.62}
+#view-foundation .mission-callout p{font-family:var(--display);font-size:clamp(1.45rem,2.8vw,2.15rem);font-weight:600;letter-spacing:-.015em;line-height:1.25}
+#view-foundation .foundation-verse blockquote{font-family:var(--display);font-weight:600;letter-spacing:-.015em;line-height:1.2}
+#view-foundation .response-steps h3{min-height:2.4em}
