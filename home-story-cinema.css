@@ -25,3 +25,7 @@
 @media(prefers-reduced-motion:reduce){#view-home .btn{transition:none}#view-home .btn:hover{transform:none}}
 
 #view-home .waitlist-story .waitlist-offer,#view-home .waitlist-story .waitlist-offer span{color:#30445e}#view-home .waitlist-story .waitlist-offer strong{color:#16477e}
+/* Readable audience selectors on the light gallery section. */
+#view-home .mission-gallery .gallery-tabs button{color:#fff!important;background:#182839!important;border:1px solid #7f9bb8!important;box-shadow:0 3px 0 #07101b,inset 0 1px 0 #ffffff25}
+#view-home .mission-gallery .gallery-tabs button[aria-selected="true"]{color:#fff!important;background:linear-gradient(180deg,#216fe0,#06439c)!important;border-color:#8db7f5!important}
+#view-home .mission-gallery .gallery-tabs button:hover{color:#fff!important;background:#264363!important}
