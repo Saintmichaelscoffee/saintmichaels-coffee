@@ -1,0 +1,35 @@
+/* Foundation chapters follow the same dark/light rhythm as Our Story. */
+#view-foundation>section{position:relative;isolation:isolate;border-top:4px solid #2468b7}
+#view-foundation>.band,#view-foundation>.verse{padding:85px 0}
+#view-foundation .foundation-dark{background:radial-gradient(ellipse at 75% 15%,#213852,#0b1420 80%);color:#dce7f4;box-shadow:inset 0 1px 0 #ffffff20,inset 0 -24px 40px -35px #000}
+#view-foundation .foundation-light,body>.verse-short.foundation-light{background:linear-gradient(145deg,#f8fafc,#e0e8f2);color:#30445e;box-shadow:inset 0 18px 30px -25px #112c5850,0 22px 40px -25px #0004}
+#view-foundation h1,#view-foundation h2,#view-foundation h3{background:none!important;color:#fff!important;-webkit-text-fill-color:#fff!important;text-shadow:0 2px 3px #0006,0 6px 14px #0003}
+#view-foundation .foundation-light h2,#view-foundation .foundation-light h3{color:#12356c!important;-webkit-text-fill-color:#12356c!important;text-shadow:0 2px 3px #18385730}
+#view-foundation .foundation-dark p,#view-foundation .foundation-dark li{color:#dce7f4}
+#view-foundation .foundation-dark .eyebrow,#view-foundation .callout-kicker{color:#abcaf6}
+#view-foundation .foundation-light p{color:#30445e}
+#view-foundation .foundation-light .eyebrow{color:#245e9e}
+#view-foundation .foundation-caption{padding:38px 0}
+#view-foundation .foundation-caption strong{display:block;font-size:1.5rem;color:#12356c;margin-bottom:8px}
+#view-foundation .split{gap:65px;align-items:center}
+#view-foundation .mission-callout{padding:40px;border:1px solid #6a8bb2;border-left:5px solid #438bed;border-radius:6px;background:linear-gradient(145deg,#2b4464,#15283e);box-shadow:14px 19px 0 -7px #41638a44,0 28px 42px -22px #000b,inset 0 1px 0 #ffffff30}
+#view-foundation .mission-callout p{color:#fff;line-height:1.25}
+#view-foundation .response-steps{gap:24px}
+#view-foundation .response-steps article{padding:32px 28px;border:1px solid #adc0d7;border-radius:6px;background:linear-gradient(145deg,#fff,#eaf0f8);box-shadow:0 20px 30px -20px #18385770,inset 0 1px 0 #fff;transition:transform .3s,box-shadow .3s}
+#view-foundation .response-steps article>span{color:#164b94;text-shadow:0 3px 4px #18385720}
+#view-foundation .response-steps p{color:#30445e;line-height:1.65}
+#view-foundation .assistance-list{padding:22px 28px;background:linear-gradient(145deg,#263d56,#132237);border:1px solid #6a8bb2;border-radius:6px;box-shadow:14px 19px 0 -7px #41638a44,0 28px 42px -22px #000b}
+#view-foundation .assistance-list li{color:#fff;border-color:#ffffff30;padding-top:20px;padding-bottom:20px}
+#view-foundation .assistance-list li:before{background:#8db7f5}
+#view-foundation .foundation-verse blockquote{color:#12356c;text-shadow:0 3px 4px #18385728}
+#view-foundation .foundation-verse cite,body>.verse-short.foundation-light cite{color:#245e9e}
+body>.verse-short.foundation-light{border-top:4px solid #2468b7;padding:70px 0}
+body>.verse-short.foundation-light blockquote{color:#12356c}
+#view-foundation .foundation-contact .btn{margin-top:22px;min-height:52px;border-radius:5px;box-shadow:0 5px 0 #001b48,0 13px 23px #0005,inset 0 1px 0 #ffffff55}
+#view-foundation .foundation-hero{min-height:650px;box-shadow:0 20px 40px -20px #0009}
+#view-foundation .foundation-hero-copy{padding-bottom:65px}
+#view-foundation .foundation-hero-copy h1{color:#fff}
+#view-foundation .foundation-hero-copy p{color:#e9eff8}
+@media(hover:hover) and (prefers-reduced-motion:no-preference){.motion-on #view-foundation .response-steps article:hover{transform:translateY(-6px);box-shadow:0 27px 36px -20px #18385780}.motion-on #view-foundation .btn:hover{transform:translateY(-2px)}}
+@media(max-width:800px){#view-foundation>.band,#view-foundation>.verse{padding:55px 0}#view-foundation .split{gap:35px}#view-foundation .response-steps{grid-template-columns:1fr;gap:22px}#view-foundation .mission-callout{padding:28px;box-shadow:8px 13px 0 -5px #41638a44,0 20px 30px -18px #0009}#view-foundation .assistance-list{padding:16px 22px}#view-foundation .foundation-hero{min-height:590px}#view-foundation .foundation-hero-copy{padding-top:150px;padding-bottom:45px}}
+@media(prefers-reduced-motion:reduce){#view-foundation *{transition:none!important;animation:none!important}}
