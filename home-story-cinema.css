@@ -33,3 +33,8 @@
 #view-home h1,#view-home h2,#view-home h3{ text-shadow:0 2px 3px #0005,0 6px 14px #0003 }
 #view-home .coffee-edit h2,#view-home .mission-gallery h2,#view-home .mission-gallery h3,#view-home .giving-edit h2,#view-home .waitlist-band h2{ text-shadow:0 2px 2px #ffffffc0,0 4px 7px #18385728 }
 #view-home .gallery-count,#view-home .swipe-hint{color:#30445e}
+
+/* Solid lettering; the shadow sits behind the title, never replaces its fill. */
+#view-home h1,#view-home h2,#view-home h3{background:none!important;background-clip:border-box!important;-webkit-background-clip:border-box!important;color:#fff!important;-webkit-text-fill-color:#fff!important;opacity:1;text-shadow:0 2px 3px #0006,0 5px 10px #0003}
+#view-home .coffee-edit h2,#view-home .coffee-edit h3,#view-home .mission-gallery .gallery-heading h2,#view-home .giving-edit h2,#view-home .waitlist-band h2,#view-home .waitlist-band h3{color:#12356c!important;-webkit-text-fill-color:#12356c!important;text-shadow:0 2px 3px #18385730,0 5px 9px #18385718}
+#view-home h1 *,#view-home h2 *,#view-home h3 *{color:inherit!important;-webkit-text-fill-color:inherit!important;background:none!important}
