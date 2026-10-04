@@ -37,3 +37,5 @@
 /* Use the shared brand typography for the service page and its CTA. */
 .service-page{font-family:var(--body)}
 .service-form button{font-family:var(--display);font-weight:600;text-transform:uppercase;letter-spacing:.09em}
+
+.service-sms-details summary{color:#f4f5f7}
