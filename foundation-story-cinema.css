@@ -43,3 +43,6 @@ body>.verse-short.foundation-light blockquote{color:#12356c}
 #view-foundation .mission-callout p{font-family:var(--display);font-size:clamp(1.45rem,2.8vw,2.15rem);font-weight:600;letter-spacing:-.015em;line-height:1.25}
 #view-foundation .foundation-verse blockquote{font-family:var(--display);font-weight:600;letter-spacing:-.015em;line-height:1.2}
 #view-foundation .response-steps h3{min-height:2.4em}
+
+/* Foundation statement uses the exact approved homepage section-title typography. */
+#view-foundation .foundation-verse blockquote{font-family:var(--display);font-weight:800;font-size:clamp(1.9rem,3.6vw,2.9rem);letter-spacing:-.015em;line-height:1.06;text-transform:uppercase;text-wrap:balance;max-width:22ch}
