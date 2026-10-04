@@ -29,3 +29,7 @@
 #view-home .mission-gallery .gallery-tabs button{color:#fff!important;background:#182839!important;border:1px solid #7f9bb8!important;box-shadow:0 3px 0 #07101b,inset 0 1px 0 #ffffff25}
 #view-home .mission-gallery .gallery-tabs button[aria-selected="true"]{color:#fff!important;background:linear-gradient(180deg,#216fe0,#06439c)!important;border-color:#8db7f5!important}
 #view-home .mission-gallery .gallery-tabs button:hover{color:#fff!important;background:#264363!important}
+
+#view-home h1,#view-home h2,#view-home h3{ text-shadow:0 2px 3px #0005,0 6px 14px #0003 }
+#view-home .coffee-edit h2,#view-home .mission-gallery h2,#view-home .mission-gallery h3,#view-home .giving-edit h2,#view-home .waitlist-band h2{ text-shadow:0 2px 2px #ffffffc0,0 4px 7px #18385728 }
+#view-home .gallery-count,#view-home .swipe-hint{color:#30445e}

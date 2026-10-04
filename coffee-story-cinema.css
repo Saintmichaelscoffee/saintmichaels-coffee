@@ -1,0 +1,20 @@
+/* The Coffee chapter: depth, framed products, and clear section breaks. */
+#view-shop>.band{padding:80px 0;position:relative;border-top:4px solid #1461bb}
+#view-shop>.band:first-child{background:radial-gradient(ellipse at 50% 0,#243c5a,#080d15 75%);box-shadow:inset 0 -30px 50px -30px #000;color:#e9eff8;padding-bottom:80px!important}
+#view-shop h1,#view-shop h2{text-shadow:0 3px 4px #0005,0 8px 18px #0003}
+#view-shop .product-section{background:linear-gradient(135deg,#edf2f8,#fff 55%,#e6edf5);box-shadow:inset 0 16px 25px -22px #19365280,0 15px 30px -25px #0008}
+#view-shop .product-grid{gap:40px;align-items:stretch}
+#view-shop .product-preview{padding:24px 24px 0;border:1px solid #52677f;border-radius:8px;background:linear-gradient(145deg,#26394e,#0b121e);box-shadow:0 25px 45px -20px #102d5770,inset 0 1px 0 #ffffff35}
+#view-shop .product-preview>img{height:440px;width:100%;object-fit:contain;background:radial-gradient(ellipse,#263d53,#101b2a);border-radius:4px;padding:18px;box-sizing:border-box;filter:drop-shadow(0 12px 12px #0007)}
+#view-shop .product-copy{padding:30px 12px 38px;color:#dce7f4}
+#view-shop .product-copy h2{color:#fff;font-size:clamp(2rem,3vw,2.7rem);line-height:1.1;min-height:2.2em;margin-bottom:16px}
+#view-shop .product-copy p{color:#dce7f4;line-height:1.7;margin:0 0 24px}
+#view-shop .coffee-certifications{color:#b7d6ff!important;font-weight:600}
+#view-shop>.paper{padding:80px 0!important;background:linear-gradient(145deg,#182839,#080d15);color:#e7eef7;box-shadow:inset 0 1px 0 #ffffff26}
+#view-shop .paper h2{color:#fff;background:none;-webkit-text-fill-color:#fff}
+#view-shop .faqs{max-width:850px;margin:32px auto 0}
+#view-shop .faqs details{padding:22px 26px;margin-bottom:16px;background:#1b2d42;border:1px solid #4c6683;border-radius:6px;box-shadow:0 8px 16px -10px #000a}
+#view-shop .faqs summary{color:#fff;cursor:pointer}
+#view-shop .faqs p{color:#dce7f4;line-height:1.7}
+#view-shop .btn{min-height:52px;box-shadow:0 5px 0 #03162e,0 12px 20px -12px #0009,inset 0 1px 0 #ffffff30}
+@media(max-width:700px){#view-shop>.band,#view-shop>.paper{padding:54px 0!important}#view-shop .product-grid{gap:32px}#view-shop .product-preview{padding:16px 16px 0}#view-shop .product-preview>img{height:360px;padding:12px}#view-shop .product-copy{padding:26px 8px 32px}#view-shop .faqs details{padding:20px}}
