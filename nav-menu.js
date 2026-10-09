@@ -1,3 +1,17 @@
+// Google Analytics: shared across every public website page.
+(()=>{
+ const id='G-9R0V4XMNSH';
+ if(document.querySelector('script[src*="googletagmanager.com/gtag/js"]'))return;
+ window.dataLayer=window.dataLayer||[];
+ window.gtag=window.gtag||function(){window.dataLayer.push(arguments);};
+ window.gtag('js',new Date());
+ window.gtag('config',id,{allow_google_signals:false,allow_ad_personalization_signals:false});
+ const tag=document.createElement('script');
+ tag.async=true;
+ tag.src='https://www.googletagmanager.com/gtag/js?id='+id;
+ document.head.appendChild(tag);
+})();
+
 (()=>{
  const header=document.querySelector('header.bar'),button=header?.querySelector('.mobile-nav-toggle'),nav=header?.querySelector('nav.v');
  if(!header||!button||!nav)return;
@@ -10,3 +24,5 @@
  document.addEventListener('click',e=>{if(!header.contains(e.target))close();});
  mobile.addEventListener('change',close);
 })();
+
+
