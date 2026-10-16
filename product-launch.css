@@ -1,0 +1,195 @@
+/* Product launch estimates and the Morning Fuel packaging concept. */
+#view-home .product-availability,
+#view-shop .product-availability,
+#view-stand-watch .product-availability {
+  margin: 0 0 22px;
+  padding: 14px 16px;
+  border: 1px solid #b7cce5;
+  border-left: 3px solid #2469bf;
+  border-radius: 5px;
+  background: #e6effa;
+}
+#view-home .product-availability .product-launch-status,
+#view-shop .product-availability .product-launch-status,
+#view-stand-watch .product-availability .product-launch-status {
+  margin: 0 0 7px;
+  color: #12356c;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+#view-home .product-availability .product-launch-note,
+#view-shop .product-availability .product-launch-note,
+#view-stand-watch .product-availability .product-launch-note {
+  margin: 0;
+  color: #30445e;
+  font-size: .9rem;
+  line-height: 1.5;
+}
+#view-shop .product-availability {
+  border-color: #526f94;
+  border-left-color: #74acfa;
+  background: #172d48;
+}
+#view-shop .product-availability .product-launch-status { color: #c4ddff; }
+#view-shop .product-availability .product-launch-note { color: #dce7f4; }
+
+#view-home .morning-fuel-section,
+#view-shop .morning-fuel-section {
+  padding: 72px 0;
+  border-top: 4px solid #396ea9;
+  border-bottom: 1px solid #c5d2e3;
+  background: linear-gradient(145deg, #f8fafc, #e0e8f2);
+  box-shadow: inset 0 18px 30px -25px #112c5844;
+}
+#view-home .morning-fuel-section *,
+#view-shop .morning-fuel-section * { box-sizing: border-box; }
+.morning-fuel-section .morning-fuel-frame {
+  display: grid;
+  grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(24px, 4vw, 56px);
+  padding: clamp(20px, 3vw, 38px);
+  border: 1px solid #52677f;
+  border-radius: 8px;
+  background: radial-gradient(ellipse at 20% 15%, #2b4059, #0b1420 80%);
+  box-shadow: 0 25px 45px -20px #102d5770, inset 0 1px 0 #ffffff35;
+}
+.morning-fuel-section .morning-fuel-visual {
+  min-width: 0;
+  margin: 0;
+  padding: 12px;
+  border: 1px solid #7086a14d;
+  border-radius: 5px;
+  background: #101b2a;
+  box-shadow: 0 16px 30px -18px #000b;
+}
+.morning-fuel-section .morning-fuel-visual img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: contain;
+  border-radius: 3px;
+}
+.morning-fuel-section .morning-fuel-visual figcaption {
+  padding: 11px 4px 0;
+  color: #b8c9de;
+  font-size: .85rem;
+  line-height: 1.4;
+}
+.morning-fuel-section .morning-fuel-copy { min-width: 0; }
+#view-home .morning-fuel-section .eyebrow,
+#view-shop .morning-fuel-section .eyebrow { color: #abcaf6; }
+#view-home .morning-fuel-section h2,
+#view-shop .morning-fuel-section h2 {
+  margin: 12px 0 18px;
+  color: #fff;
+  -webkit-text-fill-color: #fff;
+  font-size: clamp(2.5rem, 4vw, 3.8rem);
+  line-height: 1.05;
+  text-shadow: 0 3px 4px #0005, 0 8px 18px #0003;
+}
+#view-home .morning-fuel-section .morning-fuel-status,
+#view-shop .morning-fuel-section .morning-fuel-status {
+  display: inline-block;
+  max-width: 100%;
+  margin: 0 0 20px;
+  padding: 8px 12px;
+  border: 1px solid #6386b4;
+  border-radius: 4px;
+  background: #172d48;
+  color: #c4ddff;
+  font-size: .95rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+#view-home .morning-fuel-section .morning-fuel-description,
+#view-shop .morning-fuel-section .morning-fuel-description {
+  margin: 0 0 26px;
+  color: #dce7f4;
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+.morning-fuel-section .morning-fuel-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+}
+.morning-fuel-section .morning-fuel-actions .btn {
+  max-width: 100%;
+  white-space: normal;
+  text-align: center;
+}
+#view-home .morning-fuel-section--teaser .morning-fuel-frame {
+  grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+}
+@media (max-width: 800px) {
+  #view-home .morning-fuel-section,
+  #view-shop .morning-fuel-section { padding: 54px 0; }
+  .morning-fuel-section .morning-fuel-frame,
+  #view-home .morning-fuel-section--teaser .morning-fuel-frame {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+    padding: 20px;
+  }
+}
+@media (max-width: 420px) {
+  .morning-fuel-section .morning-fuel-frame { padding: 16px; }
+  .morning-fuel-section .morning-fuel-visual { padding: 8px; }
+  .morning-fuel-section .morning-fuel-actions .btn { width: 100%; }
+  #view-home .product-availability,
+  #view-shop .product-availability,
+  #view-stand-watch .product-availability { padding: 12px; }
+}
+
+/* Both pages share the same persistent interest survey. */
+.morning-fuel-section .morning-fuel-poll {
+  grid-column: 1 / -1;
+  min-width: 0;
+  padding-top: 32px;
+  border-top: 1px solid #7086a166;
+}
+#view-home .morning-fuel-section .morning-fuel-poll h3,
+#view-shop .morning-fuel-section .morning-fuel-poll h3 {
+  margin: 0 0 12px;
+  color: #fff;
+  font-size: clamp(1.65rem, 2.6vw, 2.2rem);
+  line-height: 1.2;
+}
+#view-home .morning-fuel-section .morning-fuel-poll-intro,
+#view-shop .morning-fuel-section .morning-fuel-poll-intro {
+  margin: 0 0 24px;
+  color: #dce7f4;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+.morning-fuel-section .morning-fuel-poll-embed {
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid #b7cce5;
+  border-radius: 6px;
+  background: #f5f7fb;
+}
+.morning-fuel-section .morning-fuel-poll iframe {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: 1000px;
+  min-height: 1000px;
+  border: 0;
+}
+.morning-fuel-section .morning-fuel-poll-fallback { margin: 18px 0 0; }
+.morning-fuel-section .morning-fuel-poll-fallback a {
+  color: #b7d6ff;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+@media (max-width: 700px) {
+  .morning-fuel-section .morning-fuel-poll iframe {
+    height: 1150px;
+    min-height: 1150px;
+  }
+}
