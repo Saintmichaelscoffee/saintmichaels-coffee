@@ -66,6 +66,8 @@
     var running = false;
     var canAnimate = !!(back && image.closest('#view-shop') && image.animate &&
       window.CSS && CSS.supports('rotate', 'y 90deg'));
+    function mark(state) { image.setAttribute('data-auto-flip', state); }
+    mark(canAnimate ? 'waiting' : 'unsupported');
 
     function show(button) {
       image.src = button.dataset.productImage;
@@ -152,18 +154,23 @@
       if (done || manual || !prepared || !visible || !motionAllowed()) return;
       retire();
       running = true;
+      mark('turning-back');
       var ticket = version;
       image.classList.add('product-image-flipping');
       try {
         if (!await turnTo(back, 1, ticket)) return;
+        mark('holding-back');
         if (!await hold() || !current(ticket)) return;
+        mark('turning-front');
         await turnTo(front, -1, ticket);
       } catch (_) {
         // Unsupported animation implementations fail back to the original face.
+        mark('animation-error');
         if (current(ticket)) show(front);
       } finally {
         if (ticket === version) {
           if (selected !== front) show(front);
+          mark('done');
           cancel();
         }
       }
@@ -173,11 +180,12 @@
       if (done || manual || preparing || !motionAllowed()) return;
       if (prepared) return start();
       preparing = true;
+      mark('loading');
       var ticket = version;
       Promise.all([preload(front.dataset.productImage), preload(back.dataset.productImage)]).then(function (loaded) {
         if (ticket !== version) return;
         preparing = false;
-        if (!loaded.every(Boolean)) return retire();
+        if (!loaded.every(Boolean)) { mark('image-error'); return retire(); }
         prepared = true;
         start();
       });
@@ -189,6 +197,7 @@
       var button = event.target.closest('button[data-product-image]');
       if (!button || buttons.indexOf(button) === -1 || !group.contains(button)) return;
       manual = true;
+      mark('manual');
       retire();
       cancel();
       if (button === selected) return;
@@ -202,6 +211,7 @@
       image: image,
       eligible: canAnimate,
       intersect: function (entry) {
+        image.setAttribute('data-auto-flip-ratio', String(entry.intersectionRatio));
         visible = entry.isIntersecting && entry.intersectionRatio >= 0.5;
         if (visible && canAnimate) prepare();
       },
