@@ -29,5 +29,10 @@
         }
       ]
     }
-  ]
+  ],
+  "functions": {
+    "api/pod-interest.mjs": {
+      "maxDuration": 20
+    }
+  }
 }

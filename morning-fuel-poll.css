@@ -1,0 +1,57 @@
+/* Inline Morning Fuel poll. Scoped to avoid changing product or site styles. */
+.morning-fuel-poll .mf-poll-form{padding:28px;border:1px solid #b7cce5;border-radius:6px;background:#f8fafc;color:#172d48;font-family:var(--body,Arial,sans-serif)}
+.mf-poll-form [hidden]{display:none!important}
+.mf-poll-form fieldset{border:0;padding:0;margin:0;min-width:0}
+.mf-poll-form legend{width:100%;padding:0;color:#122d50;font-size:1.2rem;font-weight:700;line-height:1.4}
+.mf-poll-form .mf-hint{margin:7px 0 16px;color:#51637b;font-size:.88rem}
+.mf-poll-form .mf-interest-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.mf-poll-form .mf-choice{display:flex;align-items:center;gap:12px;min-height:66px;padding:14px 12px;border:1px solid #9eafc4;border-radius:5px;background:#fff;color:#172d48;cursor:pointer;font-size:1rem;line-height:1.35}
+.mf-poll-form input[type=radio]{width:20px;height:20px;min-width:20px;margin:0;accent-color:#0047c4;cursor:pointer}
+.mf-poll-form .mf-choice:hover,.mf-poll-form .mf-quantity-choice:hover{background:#edf3fc;border-color:#2469bf}
+.mf-poll-form .mf-choice:has(input:checked),.mf-poll-form .mf-quantity-choice:has(input:checked){border:2px solid #2469bf;background:#e7effc}
+.mf-poll-form .mf-choice:has(input:checked){padding:13px 11px}
+.mf-poll-form .mf-disclosure{margin:16px 0 0;font-size:.8rem;line-height:1.5;color:#435c7a}
+.mf-poll-form .mf-follow-up{margin-top:22px;padding-top:24px;border-top:1px solid #ccd6e4}
+.mf-poll-form .mf-follow-up[data-revealed=true]{animation:mf-poll-reveal .22s ease-out}
+@keyframes mf-poll-reveal{from{opacity:.4;transform:translateY(-5px)}to{opacity:1;transform:translateY(0)}}
+.mf-poll-form .mf-quantity legend{font-size:1.05rem;font-weight:600}
+.mf-poll-form .mf-quantity legend span{font-size:.95rem;font-weight:400;color:#52637a}
+.mf-poll-form .mf-quantity-options{display:flex;flex-wrap:wrap;gap:10px;margin:15px 0 24px}
+.mf-poll-form .mf-quantity-choice{display:flex;align-items:center;justify-content:center;gap:8px;min-width:78px;min-height:46px;padding:10px 12px;border:1px solid #9eafc4;border-radius:5px;background:white;color:#172d48;cursor:pointer;font-size:.95rem}
+.mf-poll-form .mf-quantity-choice:has(input:checked){padding:9px 11px}
+.mf-poll-form .mf-quantity-choice input{width:17px;height:17px;min-width:17px}
+.mf-poll-form .mf-unsure{min-width:120px}
+.mf-poll-form button{font:inherit}
+.mf-poll-form .mf-submit{min-height:48px;padding:12px 32px;border:2px solid #0047c4;border-radius:4px;background:#0047c4;color:#fff;font-weight:700;cursor:pointer}
+.mf-poll-form .mf-submit:hover{background:#003ba5;border-color:#003ba5}
+.mf-poll-form .mf-submit:disabled{background:#526b91;border-color:#526b91;cursor:default}
+.mf-poll-form .mf-result,.mf-poll-form .mf-error{margin:16px 0 0;font-size:.95rem;font-weight:600;line-height:1.55;max-width:75ch}
+.mf-poll-form .mf-result{color:#184d31}
+.mf-poll-form .mf-error{color:#8e2424}
+.mf-poll-form .mf-result:empty,.mf-poll-form .mf-error:empty{display:none}
+.mf-poll-form .mf-footer{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:18px;padding-top:15px;border-top:1px solid #dce3ee}
+.mf-poll-form .mf-footer p{margin:0;color:#52637a;font-size:.8rem;max-width:60ch}
+.mf-poll-form .mf-reset{flex-shrink:0;min-height:44px;padding:8px 0 8px 8px;border:0;background:transparent;color:#245b9e;text-decoration:underline;text-underline-offset:3px;font-size:.85rem;cursor:pointer}
+.mf-poll-form .mf-reset:disabled{color:#68778b;cursor:default;text-decoration:none}
+.mf-poll-form fieldset:disabled .mf-choice,.mf-poll-form fieldset:disabled .mf-quantity-choice,.mf-poll-form input:disabled{cursor:default}
+.mf-poll-form .mf-trap{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden}
+.mf-poll-form .morning-fuel-poll-fallback,.mf-poll-form .mf-unavailable{margin:15px 0 0;color:#43566f;font-size:.9rem}
+.mf-poll-form .morning-fuel-poll-fallback a,.mf-poll-form .mf-unavailable a{color:#245b9e;text-decoration:underline;text-underline-offset:3px}
+.mf-poll-form :focus-visible{outline:3px solid #0047c4;outline-offset:4px}
+@media(max-width:700px){
+ .morning-fuel-poll .mf-poll-form{padding:20px 16px}
+ .mf-poll-form legend{font-size:1.1rem}
+ .mf-poll-form .mf-interest-options{grid-template-columns:minmax(0,1fr);gap:10px}
+ .mf-poll-form .mf-choice{min-height:58px;font-size:.97rem}
+ .mf-poll-form .mf-follow-up{margin-top:18px;padding-top:20px}
+ .mf-poll-form .mf-quantity legend{font-size:1rem}
+ .mf-poll-form .mf-quantity-options{gap:8px;margin-bottom:20px}
+ .mf-poll-form .mf-quantity-choice{flex:1 0 20%;min-width:48px;gap:6px;padding:10px 7px}
+ .mf-poll-form .mf-quantity-choice:has(input:checked){padding:9px 6px}
+ .mf-poll-form .mf-unsure{flex:0 1 auto;min-width:115px}
+ .mf-poll-form .mf-submit{width:100%}
+ .mf-poll-form .mf-footer{align-items:center;gap:10px}
+ .mf-poll-form .mf-footer p{font-size:.75rem}
+ .mf-poll-form .mf-reset{font-size:.8rem}
+}
+@media(prefers-reduced-motion:reduce){.mf-poll-form *{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
