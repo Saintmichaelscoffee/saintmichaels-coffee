@@ -80,3 +80,14 @@
     border-color: #969da6 #353c45 #15191f #69727e !important;
   }
 }
+
+/* Lift the square artwork itself while preserving its size and the frame height. */
+#view-home #coffee-collection .coffee-image img {
+  width: min(100%, 480px);
+  height: auto;
+  margin-block: max(0px, calc((480px - 100%) / 2));
+  box-shadow:
+    0 0 0 1px #ffffff30,
+    0 2px 3px #00000055,
+    0 10px 14px -7px #00000099;
+}
