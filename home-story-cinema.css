@@ -38,3 +38,8 @@
 #view-home h1,#view-home h2,#view-home h3{background:none!important;background-clip:border-box!important;-webkit-background-clip:border-box!important;color:#fff!important;-webkit-text-fill-color:#fff!important;opacity:1;text-shadow:0 2px 3px #0006,0 5px 10px #0003}
 #view-home .coffee-edit h2,#view-home .coffee-edit h3,#view-home .mission-gallery .gallery-heading h2,#view-home .giving-edit h2,#view-home .waitlist-band h2,#view-home .waitlist-band h3{color:#12356c!important;-webkit-text-fill-color:#12356c!important;text-shadow:0 2px 3px #18385730,0 5px 9px #18385718}
 #view-home h1 *,#view-home h2 *,#view-home h3 *{color:inherit!important;-webkit-text-fill-color:inherit!important;background:none!important}
+
+/* Keep automatic story rotation easy to pause without changing the gallery layout. */
+#view-home .mission-gallery .gallery-controls .gallery-rotation{width:auto;min-width:145px;padding:0 16px;border-radius:4px;font:600 .9rem var(--display);color:#fff;background:#182839}
+#view-home .mission-gallery .gallery-controls .gallery-rotation:hover:not(:disabled){background:#064eb8}
+#view-home .mission-gallery .gallery-controls .gallery-rotation:disabled{cursor:default;background:#e0e8f2;color:#30445e}
