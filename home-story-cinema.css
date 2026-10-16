@@ -43,3 +43,40 @@
 #view-home .mission-gallery .gallery-controls .gallery-rotation{width:auto;min-width:145px;padding:0 16px;border-radius:4px;font:600 .9rem var(--display);color:#fff;background:#182839}
 #view-home .mission-gallery .gallery-controls .gallery-rotation:hover:not(:disabled){background:#064eb8}
 #view-home .mission-gallery .gallery-controls .gallery-rotation:disabled{cursor:default;background:#e0e8f2;color:#30445e}
+
+/* Raised charcoal frames for the two homepage coffees; product art stays intact. */
+#view-home #coffee-collection .coffee-image {
+  --coffee-frame-edge: 8px;
+  --coffee-frame-base: 10px;
+  --coffee-frame-shadow: 0 24px 24px -14px #10141b80, 0 44px 52px -32px #10141b80;
+  background: linear-gradient(145deg, #535a63, #343a42 35%, #24292f) !important;
+  border-color: #7b828b #292e36 #15191f #545c66 !important;
+  border-radius: 7px;
+  box-shadow:
+    inset 0 2px 0 #ffffff30,
+    inset 1px 0 0 #ffffff12,
+    inset 0 -2px 0 #00000040,
+    0 var(--coffee-frame-edge) 0 #292e35,
+    0 var(--coffee-frame-base) 0 #14181d,
+    var(--coffee-frame-shadow);
+}
+#view-home #coffee-collection .coffee-image::before {
+  inset: 10px;
+  border-color: #12161c #404750 #58616c #262c34;
+  border-radius: 3px;
+  background: linear-gradient(145deg, #2b3037, #1a1e24);
+  box-shadow: inset 0 3px 10px #00000055, 0 1px 0 #ffffff24;
+}
+@media (max-width: 800px) {
+  #view-home #coffee-collection .coffee-image {
+    --coffee-frame-edge: 6px;
+    --coffee-frame-base: 8px;
+    --coffee-frame-shadow: 0 18px 18px -12px #10141b70, 0 30px 32px -24px #10141b70;
+  }
+}
+@media (min-width: 801px) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .motion-on #view-home #coffee-collection .coffee-image:hover {
+    --coffee-frame-shadow: 0 26px 28px -14px #10141b90, 0 46px 56px -32px #10141b90;
+    border-color: #969da6 #353c45 #15191f #69727e !important;
+  }
+}
