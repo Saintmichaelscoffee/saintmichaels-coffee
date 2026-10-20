@@ -73,6 +73,7 @@
   object-fit: contain;
   border-radius: 3px;
 }
+.morning-fuel-section .morning-fuel-visual img + img { margin-top: 12px; }
 .morning-fuel-section .morning-fuel-visual figcaption {
   padding: 11px 4px 0;
   color: #b8c9de;
