@@ -1,0 +1,7 @@
+/* Review-only preferences panel; existing brand fonts and assets remain intact. */
+.referral-preferences{font:inherit;color:var(--paper,#f6f1e8);background:linear-gradient(140deg,#163555,#071527);border:1px solid #6685a0;padding:.7rem 1rem;margin:1rem;border-radius:2px;box-shadow:0 8px 24px #0004;cursor:pointer}
+.referral-dialog{max-width:640px;width:calc(100% - 2rem);box-sizing:border-box;padding:clamp(20px,4vw,36px);color:#f6f1e8;background:linear-gradient(140deg,#183c60,#071527 80%);border:1px solid #6685a0;border-radius:2px;box-shadow:0 28px 90px #0009;font-family:'Source Sans 3',sans-serif}
+.referral-dialog::backdrop{background:#020b17c9}.referral-dialog h2{font-family:'Saira Condensed',sans-serif;font-size:2.1rem;line-height:1.1;margin-top:0}.referral-dialog p{line-height:1.55}.referral-actions{display:flex;gap:12px;flex-wrap:wrap}.referral-actions button{font:700 1rem 'Saira Condensed',sans-serif;min-height:44px;padding:10px 16px;color:#071527;background:#f6f1e8;border:1px solid #f6f1e8;cursor:pointer}.referral-actions button:focus-visible,.referral-preferences:focus-visible{outline:3px solid #9dcfff;outline-offset:4px}.referral-status{font-weight:600}
+
+.referral-status{margin-top:1.25rem}.referral-actions{padding-bottom:.25rem}
+
