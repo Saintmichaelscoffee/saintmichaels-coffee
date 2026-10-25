@@ -3,7 +3,8 @@ const form=document.getElementById('subscription-selection');if(!form)return;
 const variants={espresso:{1:'67784669987051',2:'67784670019819',3:'67784670052587',5:'67784670085355'},watch:{1:'67784671658219',2:'67784671690987',3:'67784671723755',5:'67784671756523'}};
 const coffee=document.getElementById('subscription-coffee'),plan=form.elements.selling_plan,error=document.getElementById('subscription-error');let busy=false;
 function updateBagImages(){
-const image=coffee.value==='espresso'?'answer-the-call-front-20261016.webp':coffee.value==='watch'?'stand-watch-front-20261016.webp':null;
+const image=coffee.value==='espresso'?'answer-the-call-front-20261016.webp':coffee.value==='watch'?'stand-watch-front-20261016.webp':'answer-the-call-front-20261016.webp';
+document.getElementById('subscription-image-example').hidden=!!coffee.value;
 document.querySelectorAll('.subscription-bags').forEach(stage=>{stage.classList.toggle('has-coffee',!!image);stage.querySelectorAll('img').forEach(img=>{if(image&&img.getAttribute('src')!==image)img.src=image;});});
 }
 function updateAvailability(){
