@@ -26,3 +26,17 @@
 })();
 
 
+
+// Conversion intent only; completed commerce events remain owned by Shopify.
+(()=>{
+function track(name,params={}){window.gtag?.('event',name,params);}
+document.addEventListener('click',event=>{
+ const card=event.target.closest('.subscription-card');if(card){track('subscription_card_click',{bag_quantity:Number(card.dataset.bags)});return;}
+ const link=event.target.closest('a');if(!link)return;
+ if(link.closest('.service-offer'))track('service_discount_banner_click');
+ if(/pre.?order/i.test(link.textContent))track('preorder_click',{destination:new URL(link.href).pathname});
+});
+document.addEventListener('submit',event=>{const form=event.target;if(form.id==='subscription-selection'&&!event.defaultPrevented&&form.elements.id.value)track(event.submitter?.dataset.purchase==='one-time'?'one_time_checkout_click':'subscription_checkout_click',{bag_quantity:Number(form.dataset.bags),selling_plan_id:form.elements.selling_plan.disabled?undefined:form.elements.selling_plan.value});});
+document.addEventListener('smc:waitlist-accepted',()=>track('waitlist_submission'));
+document.addEventListener('smc:service-accepted',()=>track('service_discount_registration'));
+})();
