@@ -2,6 +2,17 @@
 const form=document.getElementById('subscription-selection');if(!form)return;
 const variants={espresso:{1:'67784669987051',2:'67784670019819',3:'67784670052587',5:'67784670085355'},watch:{1:'67784671658219',2:'67784671690987',3:'67784671723755',5:'67784671756523'}};
 const coffee=document.getElementById('subscription-coffee'),plan=form.elements.selling_plan,error=document.getElementById('subscription-error');let busy=false;
+// Shopify redirects cart/add to return_to without preserving the action query.
+// Carry Google's existing, short-lived linker through that redirect; create no IDs.
+form.addEventListener('formdata',event=>{
+try{
+const action=new URL(form.action,location.href),linker=action.searchParams.get('_gl');
+if(action.origin!=='https://g1gzkr-fe.myshopify.com'||action.pathname!=='/cart/add'||event.formData.get('return_to')!=='/checkout')return;
+if(linker&&linker.length<=4096&&!/[\u0000-\u0020\u007f]/.test(linker)){
+const checkout=new URL('/checkout',action);checkout.searchParams.set('_gl',linker);event.formData.set('return_to',checkout.pathname+checkout.search);
+}
+}catch{/* Missing or malformed decoration leaves the original checkout path unchanged. */}
+});
 function updateBagImages(){
 const image=coffee.value==='espresso'?'answer-the-call-front-20261016.webp':coffee.value==='watch'?'stand-watch-front-20261016.webp':'answer-the-call-front-20261016.webp';
 document.getElementById('subscription-image-example').hidden=!!coffee.value;
