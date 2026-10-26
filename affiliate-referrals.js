@@ -5,6 +5,7 @@ const config=window.SMCReferralConfig||{},shop='g1gzkr-fe.myshopify.com',key='sm
 const origins=['https://saintmichaelscoffee.com','https://www.saintmichaelscoffee.com','https://g1gzkr-fe.myshopify.com'];
 const valid=value=>typeof value==='string'&&/^[A-Za-z0-9_-]{1,40}$/.test(value)?value:null;
 const consent=()=>{try{return navigator.globalPrivacyControl!==true&&window.SMCReferralConsent?.get()===true;}catch{return false;}};
+const initializing=()=>window.SMCReferralConsent?.pending?.()===true;
 const basis=()=>consent()?(window.SMCReferralConsent?.basis?.()||'affiliate-v1'):null;
 const origin=value=>{try{const u=new URL(value);return u.protocol==='https:'&&!u.username&&!u.password&&origins.includes(u.origin)?u.origin+'/':'';}catch{return '';}};
 let pending=valid(new URLSearchParams(location.search).get('ref')),memory=null,reported=false,controller;
@@ -21,13 +22,13 @@ function save(ref,days){
  document.cookie=key+'='+encodeURIComponent(ref)+'; Max-Age='+days*86400+'; path=/; SameSite=Lax; Secure'+(location.hostname.endsWith('saintmichaelscoffee.com')?'; domain=.saintmichaelscoffee.com':'');
 }
 function getRef(){
- if(!consent()){clear();return null;}
+ if(!consent()){if(!initializing())clear();return null;}
  let saved=memory;try{saved=saved||JSON.parse(localStorage.getItem(key)||'null');}catch{}
  if(!saved||!valid(saved.ref)||!Number.isFinite(saved.until)||saved.until<=Date.now()){clear();return null;}
  return saved.ref;
 }
 function reconcile(){
- if(!consent()){clear();if(window.SMCReferralConsent?.get()===false)pending=null;return;}
+ if(!consent()){if(!initializing())clear();if(window.SMCReferralConsent?.get()===false)pending=null;return;}
  if(pending){const ref=pending;pending=null;save(ref,30);report(ref);}else getRef();
 }
 function report(ref){
