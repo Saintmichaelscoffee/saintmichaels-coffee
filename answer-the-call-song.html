@@ -43,9 +43,8 @@
         <p class="lead">Great coffee.<br>Greater purpose.</p>
         <div class="player">
           <p class="player-label" id="audio-label">Listen to Answer the Call</p>
-          <!-- Release gate: add the verified official licensed audio source only after approval. -->
-          <audio id="song-audio" controls preload="none" aria-labelledby="audio-label" aria-describedby="audio-status" hidden>Your browser does not support audio playback.</audio>
-          <p id="audio-status" role="status">The song is being prepared. Please check back soon.</p>
+          <audio id="song-audio" controls preload="none" aria-labelledby="audio-label" aria-describedby="audio-status"><source src="/answer-the-call-song-final.mp3" type="audio/mpeg">Your browser does not support audio playback.</audio>
+          <p id="audio-status" role="status">Press play to listen.</p>
         </div>
         <div class="actions"><a class="button primary" href="/shop.html">Shop Coffee <span aria-hidden="true">↗</span></a><button class="button secondary" id="copy-link" type="button" hidden>Copy Song Link</button></div>
         <p id="share-status" class="share-status" role="status"></p>
