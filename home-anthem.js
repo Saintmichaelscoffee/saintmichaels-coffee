@@ -21,7 +21,7 @@
     try { if (off) sessionStorage.setItem(key, '1'); else sessionStorage.removeItem(key); } catch { /* Storage can be unavailable. */ }
   }
   function render(message) {
-    toggle.textContent = audio.paused ? 'Play Anthem' : 'Stop Music';
+    toggle.textContent = audio.paused ? 'Play Music' : 'Stop Music';
     if (message) status.textContent = message;
   }
   function pause(message, remember = true, reset = false) {
@@ -47,12 +47,12 @@
         if (suspended || optedOut) audio.pause();
         return;
       }
-      render('Playing the anthem. Music plays on Home only.');
+      render('Music is playing. Music plays on Home only.');
     } catch (error) {
       if (current !== attempt || suspended) return;
       render(error.name === 'NotAllowedError'
-        ? 'Sound did not start. Press Play Anthem to listen.'
-        : 'The anthem could not start. Press Play Anthem to try again.');
+        ? 'Sound did not start. Press Play Music to listen.'
+        : 'The music could not start. Press Play Music to try again.');
     }
   }
   toggle.addEventListener('click', () => {
@@ -62,27 +62,27 @@
   audio.addEventListener('play', () => {
     if (suspended) { audio.pause(); return; }
     if (audio.paused) return; // Ignore a queued play event after a stop or navigation.
-    render(audio.muted ? 'Anthem muted.' : 'Playing the anthem. Music plays on Home only.');
+    render(audio.muted ? 'Music is muted.' : 'Music is playing. Music plays on Home only.');
   });
   audio.addEventListener('pause', () => {
     if (!audio.paused) return;
     if (!suspended && !audio.ended) preference(true);
-    render(status.textContent.startsWith('Playing') ? 'Anthem paused. Press Play Anthem to listen again.' : undefined);
+    render(status.textContent.startsWith('Music is playing') ? 'Music paused. Press Play Music to listen again.' : undefined);
   });
-  audio.addEventListener('ended', () => { preference(true); render('Anthem finished. Press Play Anthem to listen again.'); });
-  audio.addEventListener('error', () => render('The anthem could not load. Press Play Anthem to try again.'));
+  audio.addEventListener('ended', () => { preference(true); render('Music finished. Press Play Music to listen again.'); });
+  audio.addEventListener('error', () => render('The music could not load. Press Play Music to try again.'));
   document.addEventListener('play', event => {
     if (event.target !== audio && event.target instanceof HTMLMediaElement) {
-      pause('Anthem paused for other media. Press Play Anthem to listen again.');
+      pause('Music paused for other media. Press Play Music to listen again.');
     }
   }, true);
   // pagehide covers ordinary navigation and bfcache. Restoring Home never resumes sound.
-  window.addEventListener('pagehide', () => { suspended = true; pause('Anthem paused. Press Play Anthem to listen again.', false); });
+  window.addEventListener('pagehide', () => { suspended = true; pause('Music paused. Press Play Music to listen again.', false); });
   window.addEventListener('pageshow', event => {
     suspended = false;
-    if (event.persisted) pause('Anthem paused. Press Play Anthem to listen again.', false);
+    if (event.persisted) pause('Music paused. Press Play Music to listen again.', false);
   });
   panel.hidden = false;
-  render(optedOut ? 'Anthem is off for this visit. Press Play Anthem to listen.' : 'Press Play Anthem to listen.');
+  render(optedOut ? 'Music is off for this visit. Press Play Music to listen.' : 'Press Play Music to listen.');
   if (!optedOut) play(false);
 })();
