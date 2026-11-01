@@ -5,6 +5,8 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Saint Michaels Coffee | Veteran &amp; Law Enforcement Owned</title>
+<link rel="stylesheet" href="/home-anthem.css"/>
+<script src="/home-anthem.js" defer></script>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@500;600;700;800&amp;family=Source+Sans+3:wght@400;600&amp;family=Yellowtail&amp;display=swap" rel="stylesheet"/>
@@ -706,6 +708,12 @@ html:not(.motion-on) #view-home .coffee-image img,html:not(.motion-on) #view-hom
 <p class="hero-tagline">First Through the Door.<br/>First Cup of the Day.</p>
 <p class="hero-lead">For those who run toward danger and everyone who stands behind them.</p>
 <div class="row"><a class="btn solid" href="/shop.html">Pre-Order Coffee</a><a class="btn ghost" href="#coffee-community">Join the Waitlist</a></div><p class="hero-offer">Pre-order and save 10% automatically at checkout. No code needed.</p>
+<div class="home-anthem" id="home-anthem" role="group" aria-label="Homepage anthem" hidden>
+<span class="anthem-title">Answer the Call <span>· Our anthem</span></span>
+<div class="anthem-controls"><button id="anthem-toggle" type="button">Play Anthem</button><button id="anthem-mute" type="button" aria-pressed="false">Mute Anthem</button><button id="anthem-stop" type="button">Stop Anthem</button></div>
+<p id="anthem-status" role="status" aria-live="polite">Press Play Anthem to listen.</p>
+<audio id="home-anthem-audio" preload="none" aria-label="Answer the Call anthem"></audio>
+</div>
 </div>
 <div class="hero-showcase">
 <div class="hero-scripture"><blockquote class="scripture-readable">Then I heard the voice of the Lord saying, “Whom shall I send? And who will go for us?” And I said, “Here I am. Send me.”</blockquote><cite>Isaiah 6:8</cite></div>
