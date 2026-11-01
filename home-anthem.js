@@ -7,8 +7,6 @@
   if (!panel || !audio || panel.dataset.initialized) return;
   panel.dataset.initialized = 'true';
   const toggle = document.getElementById('anthem-toggle');
-  const mute = document.getElementById('anthem-mute');
-  const stop = document.getElementById('anthem-stop');
   const status = document.getElementById('anthem-status');
   const key = 'smc-home-anthem-off';
   let optedOut = false;
@@ -23,9 +21,7 @@
     try { if (off) sessionStorage.setItem(key, '1'); else sessionStorage.removeItem(key); } catch { /* Storage can be unavailable. */ }
   }
   function render(message) {
-    toggle.textContent = audio.paused ? 'Play Anthem' : 'Pause Anthem';
-    mute.textContent = audio.muted ? 'Unmute Anthem' : 'Mute Anthem';
-    mute.setAttribute('aria-pressed', String(audio.muted));
+    toggle.textContent = audio.paused ? 'Play Anthem' : 'Stop Music';
     if (message) status.textContent = message;
   }
   function pause(message, remember = true, reset = false) {
@@ -61,13 +57,7 @@
   }
   toggle.addEventListener('click', () => {
     if (audio.paused) play(true);
-    else pause('Anthem paused. It will stay off for this visit.');
-  });
-  stop.addEventListener('click', () => pause('Anthem stopped. It will stay off for this visit.', true, true));
-  mute.addEventListener('click', () => {
-    audio.muted = !audio.muted;
-    if (audio.muted) preference(true);
-    render(audio.muted ? 'Anthem muted. It will stay off when you return Home.' : (audio.paused ? 'Sound is on. Press Play Anthem to listen.' : 'Playing the anthem.'));
+    else pause('Music stopped. It will stay off for this visit.', true, true);
   });
   audio.addEventListener('play', () => {
     if (suspended) { audio.pause(); return; }
