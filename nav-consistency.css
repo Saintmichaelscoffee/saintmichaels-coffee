@@ -18,3 +18,9 @@ html body .btn *,html body button[type="submit"] *{color:inherit!important}
 html body button[type="submit"]{color:#fff!important;-webkit-text-fill-color:#fff!important;background:#064ba8!important}
 html body .gallery-controls button{color:#fff!important;background:#182839!important}
 html body .btn:focus-visible,html body button:focus-visible{outline:3px solid #80b3fa;outline-offset:4px}
+
+/* Approved Classic Gold: scripture text only; preserve existing effects. */
+/* Keep the Foundation light-background verse unchanged for readable contrast. */
+html body .verse:not(.foundation-verse):not(.foundation-light) blockquote,
+html body .hero-scripture blockquote,
+html body > section > blockquote.scripture-readable{color:#D4AF37!important}
