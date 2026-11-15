@@ -1,6 +1,6 @@
 (()=>{
 const form=document.getElementById('subscription-selection');if(!form)return;
-const variants={espresso:{1:'67784669987051',2:'67784670019819',3:'67784670052587',5:'67784670085355'},watch:{1:'67784671658219',2:'67784671690987',3:'67784671723755',5:'67784671756523'}};
+const variants={espresso:'67784669987051',watch:'67784671658219'};const bagCounts=new Set(['1','2','3','5']);
 const coffee=document.getElementById('subscription-coffee'),plan=form.elements.selling_plan,error=document.getElementById('subscription-error');let busy=false;
 // Shopify redirects cart/add to return_to without preserving the action query.
 // Carry Google's existing, short-lived linker through that redirect; create no IDs.
@@ -34,8 +34,8 @@ const button=event.submitter,bags=button?.dataset.bags,oneTime=button?.dataset.p
 plan.disabled=false;
 if(!oneTime&&Number(bags)>2&&plan.value==='11806736619'){event.preventDefault();error.textContent='3- and 5-bag subscriptions are currently available with monthly delivery only. Choose monthly, or select a 1- or 2-bag subscription.';error.hidden=false;plan.focus();return;}
 const missing=!coffee.value?coffee:!oneTime&&!plan.value?plan:null;
-if(missing||!variants[coffee.value]?.[bags]){event.preventDefault();error.textContent=missing===coffee?'Choose your coffee before selecting a bag card.':'Choose your delivery frequency before selecting a subscription card.';error.hidden=false;missing?.setAttribute('aria-invalid','true');missing?.focus();return;}
-form.elements.id.value=variants[coffee.value][bags];plan.disabled=oneTime;form.dataset.bags=bags;
+if(missing||(!variants[coffee.value]||!bagCounts.has(bags))){event.preventDefault();error.textContent=missing===coffee?'Choose your coffee before selecting a bag card.':'Choose your delivery frequency before selecting a subscription card.';error.hidden=false;missing?.setAttribute('aria-invalid','true');missing?.focus();return;}
+form.elements.id.value=variants[coffee.value];form.elements.quantity.value=bags;plan.disabled=oneTime;form.dataset.bags=bags;
 busy=true;form.querySelectorAll('button').forEach(b=>b.disabled=true);
 });
 addEventListener('pageshow',()=>{busy=false;plan.disabled=false;form.querySelectorAll('button').forEach(b=>b.disabled=false);updateAvailability()});
