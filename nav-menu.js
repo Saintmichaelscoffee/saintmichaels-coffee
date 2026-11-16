@@ -72,3 +72,28 @@ document.addEventListener('smc:service-accepted',()=>track('service_discount_reg
  preferences.onload=()=>{window.SMCReferralConfig={clickEndpoint:'https://partners.saintmichaelscoffee.com/api/track/click'};const sdk=document.createElement('script');sdk.src='/affiliate-referrals.js';document.body.append(sdk);};
  document.body.append(preferences);
 })();
+
+
+// Keep fundraising navigation consistent without changing page copy or other links.
+(()=>{
+ function updateFundraiserNavigation(){
+  document.querySelectorAll('header nav, nav[aria-label="Pages"]').forEach(nav=>{
+   const links=Array.from(nav.querySelectorAll('a[href]'));
+   const route=a=>{try{return new URL(a.getAttribute('href'),location.href).pathname;}catch{return '';}};
+   let fundraiser=links.find(a=>route(a)==='/fundraising.html');
+   const service=links.find(a=>route(a)==='/service-discount.html');
+   const blog=links.find(a=>route(a)==='/blog.html');
+   if(!fundraiser){fundraiser=document.createElement('a');fundraiser.href='/fundraising.html';}
+   fundraiser.textContent='Start a Fundraiser';
+   if(service&&service.parentElement===nav)service.after(fundraiser);
+   else if(blog&&blog.parentElement===nav)nav.insertBefore(fundraiser,blog);
+   else if(!fundraiser.parentElement)nav.append(fundraiser);
+   if(location.pathname==='/fundraising.html'){fundraiser.setAttribute('aria-current','page');fundraiser.classList.add('active');}
+  });
+  document.querySelectorAll('footer a[href]').forEach(a=>{
+   try{if(new URL(a.getAttribute('href'),location.href).pathname==='/fundraising.html')a.textContent='Start a Fundraiser';}catch{}
+  });
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',updateFundraiserNavigation,{once:true});
+ else updateFundraiserNavigation();
+})();
