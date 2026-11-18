@@ -18,6 +18,9 @@ const image=coffee.value==='espresso'?'answer-the-call-front-20261016.webp':coff
 document.getElementById('subscription-image-example').hidden=!!coffee.value;
 document.querySelectorAll('.subscription-bags').forEach(stage=>{stage.classList.toggle('has-coffee',!!image);stage.querySelectorAll('img').forEach(img=>{if(image&&img.getAttribute('src')!==image)img.src=image;});});
 }
+// Product links may select a coffee, never a recurring plan or submit an order.
+const requestedCoffee=new URLSearchParams(location.search).get('coffee');
+if(Object.hasOwn(variants,requestedCoffee)){coffee.value=requestedCoffee;updateBagImages();}
 function updateAvailability(){
 form.querySelectorAll('.subscription-card').forEach(button=>{
 const limited=Number(button.dataset.bags)>2,unavailable=limited&&plan.value==='11806736619';
