@@ -77,6 +77,7 @@ await subscribe(attributes,'TB9NDd');emailAccepted=true;document.dispatchEvent(n
 let smsFailed=false;
 if(consent.checked){try{await subscribe({email,phone_number:parsed.number,properties:{'Service SMS Checkbox Consent At':new Date().toISOString(),'Service SMS Consent Version':'20261002-main-form'},subscriptions:{sms:{marketing:{consent:'SUBSCRIBED'}}}},'WcMqfz');}catch(error){smsFailed=true;}}
 feedback.textContent='Thank you for your service! Your signup has been submitted. Check your inbox for a confirmation or welcome email. '+(smsFailed?'Your program signup is complete, but text signup could not be completed. Please email info@saintmichaelscoffee.com for help.':consent.checked?'Your text signup was also submitted. Text messages will begin after our sending number is verified.':'');
+button.textContent='SIGNUP RECEIVED';
 form.querySelectorAll('input,select,button').forEach(element=>element.disabled=true);feedback.focus();
 }catch(error){feedback.textContent=emailAccepted?'Your program signup was received. Please email info@saintmichaelscoffee.com if you need help.':'We could not complete your signup. Please try again or email info@saintmichaelscoffee.com. Your signup has not been confirmed.';button.disabled=false;button.textContent='JOIN THE PROGRAM';feedback.focus();}
 });
