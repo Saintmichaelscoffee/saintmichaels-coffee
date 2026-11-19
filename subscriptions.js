@@ -1,6 +1,6 @@
 (()=>{
 const form=document.getElementById('subscription-selection');if(!form)return;
-const variants={espresso:'67784669987051',watch:'67784671658219'};const bagCounts=new Set(['1','2','3','5']);
+const variants={espresso:'67784669987051',watch:'67784671658219'};const bagCounts=new Set(['1','2','3','4','5']);
 const coffee=document.getElementById('subscription-coffee'),plan=form.elements.selling_plan,error=document.getElementById('subscription-error');let busy=false;
 // Shopify redirects cart/add to return_to without preserving the action query.
 // Carry Google's existing, short-lived linker through that redirect; create no IDs.
@@ -13,33 +13,31 @@ const checkout=new URL('/checkout',action);checkout.searchParams.set('_gl',linke
 }
 }catch{/* Missing or malformed decoration leaves the original checkout path unchanged. */}
 });
-function updateBagImages(){
-const image=coffee.value==='espresso'?'answer-the-call-front-20261016.webp':coffee.value==='watch'?'stand-watch-front-20261016.webp':'answer-the-call-front-20261016.webp';
-document.getElementById('subscription-image-example').hidden=!!coffee.value;
-document.querySelectorAll('.subscription-bags').forEach(stage=>{stage.classList.toggle('has-coffee',!!image);stage.querySelectorAll('img').forEach(img=>{if(image&&img.getAttribute('src')!==image)img.src=image;});});
+const checkout=form.querySelector('.subscription-checkout'),summary=document.getElementById('subscription-summary');
+function updateSelection(){
+const selected=form.querySelector('[name="subscription_choice"]:checked');
+plan.value=selected?.dataset.plan||'';
+checkout.dataset.bags=selected?.dataset.bags||'';
+const name=coffee.options[coffee.selectedIndex]?.textContent;
+summary.textContent=selected?`${coffee.value?name:'Choose your coffee'} · ${selected.dataset.bags} ${selected.dataset.bags==='1'?'bag':'bags'} ${plan.value==='11806703851'?'once a month':'every 2 weeks'}. Renews automatically.`:'Choose your coffee and subscription above.';
 }
-// Product links may select a coffee, never a recurring plan or submit an order.
+// Product links select only coffee, never a recurring schedule or an order.
 const requestedCoffee=new URLSearchParams(location.search).get('coffee');
-if(Object.hasOwn(variants,requestedCoffee)){coffee.value=requestedCoffee;updateBagImages();}
-function updateAvailability(){
-form.querySelectorAll('.subscription-card').forEach(button=>{
-const limited=Number(button.dataset.bags)>2,unavailable=limited&&plan.value==='11806736619';
-button.disabled=busy||unavailable;
-button.querySelector('.subscribe-checkout-label').textContent=unavailable?'MONTHLY DELIVERY ONLY':'SUBSCRIBE & CHECKOUT';
-});
-}
-plan.addEventListener('change',updateAvailability);addEventListener('pageshow',updateAvailability);
-coffee.addEventListener('change',updateBagImages);addEventListener('pageshow',updateBagImages);
-form.addEventListener('change',()=>{error.hidden=true;coffee.removeAttribute('aria-invalid');plan.removeAttribute('aria-invalid');});
+if(Object.hasOwn(variants,requestedCoffee))coffee.value=requestedCoffee;
+form.addEventListener('change',()=>{error.hidden=true;coffee.removeAttribute('aria-invalid');updateSelection();});
 form.addEventListener('submit',event=>{
 if(busy){event.preventDefault();return;}
-const button=event.submitter,bags=button?.dataset.bags,oneTime=button?.dataset.purchase==='one-time';
-plan.disabled=false;
-if(!oneTime&&Number(bags)>2&&plan.value==='11806736619'){event.preventDefault();error.textContent='3- and 5-bag subscriptions are currently available with monthly delivery only. Choose monthly, or select a 1- or 2-bag subscription.';error.hidden=false;plan.focus();return;}
-const missing=!coffee.value?coffee:!oneTime&&!plan.value?plan:null;
-if(missing||(!variants[coffee.value]||!bagCounts.has(bags))){event.preventDefault();error.textContent=missing===coffee?'Choose your coffee before selecting a bag card.':'Choose your delivery frequency before selecting a subscription card.';error.hidden=false;missing?.setAttribute('aria-invalid','true');missing?.focus();return;}
+const button=event.submitter,oneTime=button?.dataset.purchase==='one-time';
+updateSelection();
+const bags=button?.dataset.bags;
+const validPlan=plan.value==='11806703851'||(plan.value==='11806736619'&&Number(bags)<=2);
+if(!variants[coffee.value]||!bagCounts.has(bags)||(!oneTime&&!validPlan)){
+event.preventDefault();error.textContent=!variants[coffee.value]?'Choose your coffee before continuing.':'Choose a bag quantity and delivery schedule before continuing.';error.hidden=false;
+if(!variants[coffee.value]){coffee.setAttribute('aria-invalid','true');coffee.focus();}else form.querySelector('[name="subscription_choice"]').focus();return;
+}
 form.elements.id.value=variants[coffee.value];form.elements.quantity.value=bags;plan.disabled=oneTime;form.dataset.bags=bags;
 busy=true;form.querySelectorAll('button').forEach(b=>b.disabled=true);
 });
-addEventListener('pageshow',()=>{busy=false;plan.disabled=false;form.querySelectorAll('button').forEach(b=>b.disabled=false);updateAvailability()});
+addEventListener('pageshow',()=>{busy=false;plan.disabled=false;form.querySelectorAll('button').forEach(b=>b.disabled=false);updateSelection();});
+updateSelection();
 })();
